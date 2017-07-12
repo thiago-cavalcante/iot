@@ -11,19 +11,12 @@
 \citation{cplex2003ilog}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \newlabel{sec:introduction}{{I}{1}}
-\citation{doherty2009temporal}
-\citation{whalley2005design}
-\citation{baer1998nasa}
-\citation{fabiani2007autonomous}
-\citation{teichteil2007multi}
-\citation{adolf2010onboard}
-\citation{rodriguezstudy}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}}
-\newlabel{sec:related}{{II}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Preliminaries}{2}}
-\newlabel{sec:background}{{III}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Terminology}{2}}
-\newlabel{sec:terms}{{\unhbox \voidb@x \hbox {III-A}}{2}}
+\citation{iris+}
+\citation{meier2011pixhawk}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Preliminaries}{2}}
+\newlabel{sec:background}{{II}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Terminology}{2}}
+\newlabel{sec:terms}{{\unhbox \voidb@x \hbox {II-A}}{2}}
 \newlabel{def:missioncommand}{{1}{2}}
 \newlabel{def:mission}{{2}{2}}
 \newlabel{def:almoxarifado}{{3}{2}}
@@ -32,68 +25,72 @@
 \newlabel{def:regraProducao}{{6}{2}}
 \newlabel{def:planejadorMissao}{{7}{2}}
 \newlabel{def:arquivoMissao}{{8}{2}}
-\citation{ramirez2014solving}
-\citation{korte2012combinatorial}
+\newlabel{def:movFunc}{{9}{2}}
+\newlabel{def:prodMission}{{10}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}UAV Iris+}{2}}
+\newlabel{subsec:uaviris}{{\unhbox \voidb@x \hbox {II-B}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The 3DR Iris+.\relax }}{2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:iris}{{1}{2}}
+\citation{ardupilotdev}
+\citation{meieretalPX42015}
+\citation{mavilink}
+\citation{dronekit}
 \citation{dronekit}
 \citation{meier2011pixhawk}
-\newlabel{def:movFunc}{{9}{3}}
-\newlabel{def:prodMission}{{10}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Mission Planning}{3}}
-\newlabel{subsec:missionplanning}{{\unhbox \voidb@x \hbox {III-B}}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Optimization Problems}{3}}
-\newlabel{eq:optproblema}{{1}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}UAV Movement System}{3}}
-\newlabel{sec:uav}{{IV}{3}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Description of movement functions\relax }}{3}}
-\newlabel{table:movfunc}{{I}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System Hardware Architecture.\relax }}{3}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:hardArch}{{1}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The Pixhawk flight control board. Numerous ports allow for connection of a multitude of external sensors and devices.\relax }}{3}}
+\newlabel{fig:pixhawk}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Software}{3}}
+\newlabel{subsec:software}{{\unhbox \voidb@x \hbox {II-C}}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}UAV Movement System}{3}}
+\newlabel{sec:uav}{{III}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces System Hardware Architecture.\relax }}{3}}
+\newlabel{fig:hardArch}{{3}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Description of movement functions\relax }}{4}}
+\newlabel{table:movfunc}{{I}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces System's Architecture.\relax }}{4}}
+\newlabel{fig:sysArch}{{4}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Methodology of Time Cost Evaluation, UAV Use and Mission Planning}{4}}
+\newlabel{sec:method}{{IV}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Case Study: UAV Intralogistics Mission}{4}}
+\newlabel{sec:ec}{{\unhbox \voidb@x \hbox {IV-A}}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Case Study Representation.\relax }}{4}}
+\newlabel{fig:useCase}{{5}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Modeling a UAV Intralogistics Mission as an Optimization Problem }{4}}
+\newlabel{ssec:modelo}{{\unhbox \voidb@x \hbox {IV-B}}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0a}Decision variable}{4}}
+\newlabel{eq:decision}{{1}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0b}Objective function}{4}}
+\newlabel{eq:objfunction}{{2}{4}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0c}Constraints}{4}}
+\newlabel{eq:unicity}{{3}{4}}
+\newlabel{eq:execTime}{{4}{4}}
 \citation{cplex2003ilog}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces System's Architecture.\relax }}{4}}
-\newlabel{fig:sysArch}{{2}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Methodology of Time Cost Evaluation, UAV Use and Mission Planning}{4}}
-\newlabel{sec:method}{{V}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Case Study: UAV Intralogistics Mission}{4}}
-\newlabel{sec:ec}{{\unhbox \voidb@x \hbox {V-A}}{4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Case Study Representation.\relax }}{4}}
-\newlabel{fig:useCase}{{3}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Modeling a UAV Intralogistics Mission as an Optimization Problem }{4}}
-\newlabel{ssec:modelo}{{\unhbox \voidb@x \hbox {V-B}}{4}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-B}0a}Decision variable}{4}}
-\newlabel{eq:decision}{{2}{4}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-B}0b}Objective function}{4}}
-\newlabel{eq:objfunction}{{3}{4}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-B}0c}Constraints}{4}}
-\newlabel{eq:unicity}{{4}{4}}
-\newlabel{eq:execTime}{{5}{4}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {V-B}0d}Resulting optimization problem}{4}}
-\newlabel{eq:optproblem}{{6}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Planner Evaluation Methodology}{5}}
-\newlabel{ssec:evaluationmethod}{{\unhbox \voidb@x \hbox {V-C}}{5}}
-\newlabel{eq:MPCI}{{7}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Mission Planners}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-D}1}Planner 1}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-D}2}Planner 2}{5}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {\unhbox \voidb@x \hbox {IV-B}0d}Resulting optimization problem}{5}}
+\newlabel{eq:optproblem}{{5}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Planner Evaluation Methodology}{5}}
+\newlabel{ssec:evaluationmethod}{{\unhbox \voidb@x \hbox {IV-C}}{5}}
+\newlabel{eq:MPCI}{{6}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Mission Planners}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}1}Planner 1}{5}}
 \newlabel{alg:planA}{{1}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Experimental Evaluation}{5}}
-\newlabel{sec:results}{{VI}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-A}}Experimental Environment and Objectives}{5}}
-\newlabel{ssec:expobjandenv}{{\unhbox \voidb@x \hbox {VI-A}}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}2}Planner 2}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Evaluation}{5}}
+\newlabel{sec:results}{{V}{5}}
 \citation{cplex2003ilog}
 \citation{dronekit}
 \newlabel{alg:planB}{{2}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-B}}Cost Evaluation}{6}}
-\newlabel{ssec:acusto}{{\unhbox \voidb@x \hbox {VI-B}}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experimental Environment and Objectives}{6}}
+\newlabel{ssec:expobjandenv}{{\unhbox \voidb@x \hbox {V-A}}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Cost Evaluation}{6}}
+\newlabel{ssec:acusto}{{\unhbox \voidb@x \hbox {V-B}}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Planners and optimal (CPLEX) times\relax }}{6}}
 \newlabel{fig:comp}{{II}{6}}
-\newlabel{eq1}{{8}{6}}
-\newlabel{eq2}{{9}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-C}}Practical Results}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Warehouse, Production Line X, Production Line Y and Costumer in the Map.\relax }}{6}}
-\newlabel{fig:maps}{{4}{6}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Mission Planners Flight Times.\relax }}{6}}
-\newlabel{table:plannersReal}{{III}{6}}
+\newlabel{eq1}{{7}{6}}
+\newlabel{eq2}{{8}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Practical Results}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Warehouse, Production Line X, Production Line Y and Costumer in the Map.\relax }}{6}}
+\newlabel{fig:maps}{{6}{6}}
 \bibstyle{IEEEtran}
 \bibdata{IEEEabrv,exemplo}
 \bibcite{drone4logistic}{1}
@@ -105,19 +102,16 @@
 \bibcite{muller2012analyzing}{7}
 \bibcite{pehcevski2009evaluation}{8}
 \bibcite{cplex2003ilog}{9}
-\bibcite{doherty2009temporal}{10}
-\bibcite{whalley2005design}{11}
-\bibcite{baer1998nasa}{12}
-\bibcite{fabiani2007autonomous}{13}
-\bibcite{teichteil2007multi}{14}
-\bibcite{adolf2010onboard}{15}
-\bibcite{rodriguezstudy}{16}
-\bibcite{ramirez2014solving}{17}
-\bibcite{korte2012combinatorial}{18}
-\bibcite{dronekit}{19}
-\bibcite{meier2011pixhawk}{20}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-D}}Threats to Validity}{7}}
-\newlabel{sec:ameacas}{{\unhbox \voidb@x \hbox {VI-D}}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion}{7}}
-\newlabel{sec:conclusao}{{VII}{7}}
+\bibcite{iris+}{10}
+\bibcite{meier2011pixhawk}{11}
+\bibcite{ardupilotdev}{12}
+\bibcite{meieretalPX42015}{13}
+\bibcite{mavilink}{14}
+\bibcite{dronekit}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Mission Planners Flight Times.\relax }}{7}}
+\newlabel{table:plannersReal}{{III}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Threats to Validity}{7}}
+\newlabel{sec:ameacas}{{\unhbox \voidb@x \hbox {V-D}}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{7}}
+\newlabel{sec:conclusao}{{VI}{7}}
 \@writefile{toc}{\contentsline {section}{References}{7}}

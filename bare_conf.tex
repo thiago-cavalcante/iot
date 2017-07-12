@@ -478,22 +478,6 @@ As a result to this work, we have verified that the development and experiments 
 	
 \textit{Outline}. Section~\ref{sec:related} shows previous studies related to mission planning, optimization, and evaluation. Section~\ref{sec:background} provides the fundamentals of mission planning and optimization problems. Section~\ref{sec:uav} describes the UAV movement system used in this work. Section~\ref{sec:method} explains the proposed evaluation methodology in further details. Section~\ref{sec:results} describes the experimental procedures and results in order to explore and demonstrate the potential of methodology, and, finally, Section~\ref{sec:conclusao} concludes this study and describes future work.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Related Work}
-\label{sec:related}
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the literature, there are attempts to implement UAV guidance systems that perform mission planning. In \cite{doherty2009temporal} is presented a framework architecture for mission planning and execution tracking applied to an unmanned helicopter. During the mission execution, knowledge is acquired through sensors, which were used to create state structures. These structures allow constructing a logical model, representing real system development and environment over time. The planning and monitoring modules use temporal action logic (TAL) to reason about actions and changes.
-
-The NASA/U.S. Army autonomous helicopter project has developed a guidance system for the autonomous surveillance planning problem for multiple and different targets~\cite{whalley2005design}, which generates mission plans using a theoretical approach for decision making. A high-level standalone control is provided by the framework Apex~\cite{baer1998nasa}, a reactive procedure-based scheduler/planner used to perform mission-level tasks. Apex synthesizes a course of action primarily by linking elemental procedures expressed in procedural definition language (PDL), a notation developed specifically for the Apex reactive planner. This guidance system is integrated into a robotic helicopter and tested in more than $240$ scenarios.
-
-A similar project, called Ressac (Research and Rescue by Cooperative Autonomous System), is conducted by the French Aerospace Laboratory (ONERA) for a search and rescue scenario~\cite{fabiani2007autonomous}. This architecture for an exploration mission is developed based on the idea of decomposing the mission into a sequence of tasks or macro-actions associated with rewards. The problem is modeled using a Markov decision process framework (MDP) and dynamic programming algorithms for mission planning. Konigsbuch~\cite{teichteil2007multi} extends the guidance system and integrates with a robotic helicopter.
-
-The German Aerospace Center (DLR) has also developed a mission management system based on the behavior paradigm~\cite{adolf2010onboard}, which has been integrated with the ARTIS helicopter and validated in different scenarios, including waypoints follower, search and tracking mission.
-
-In \cite{rodriguezstudy} is investigated the performance analysis of UAV operators, w.r.t. agility, consumption, aggressiveness, precision and reflexes; each of those aspects has an evaluation metrics, in order to discover behavioral pattern of the operators.
-
-Existing approaches for evaluation of mission planners for intralogistics problems are either empirical or theoretical. This paper describes an approach combining both aspects. In addition, we test the metrics in a real environment, \textit{i.e.}, using a real UAV to perform a mission and we measure the cost (mission execution time) of the mission.
-
 %--------------------------------------------
 \section{Preliminaries}
 \label{sec:background}
@@ -568,59 +552,42 @@ The production mission is the set of steps to produce all the product required b
 
 
 %--------------------------------------------
-\subsection{Mission Planning}
-\label{subsec:missionplanning}
+%\subsection{DroneKit-Android’s API}
+%\label{subsec:dronekit}
 %--------------------------------------------
 
-Firstly, a mission can be defined as a goal that needs to be completed (cf. Definition~\ref{def:mission}). In the context of this study, the UAV mission is the packages delivery according to a set of well defined rules. A definition to mission planning for UAV is the process of planning the locations to visit (waypoints) and the actions that the vehicles can perform (e.g., loading/dropping a load and taking videos/pictures), typically over a time period~\cite{ramirez2014solving}. Functionally, mission planning lies above the trajectory planning process, where the mission planner (cf. Definition~\ref{def:planejadorMissao}) generates a desired mission plan, and then the trajectory planner generates the flight plan (trajectories) between the waypoints.
-
-%\subsubsection{Related Works in Mission Planning}
-
-
-
-%\subsection{UAV Navigation}
 %--------------------------------------------
-\subsection{Optimization Problems}
+\subsection{UAV Iris+}
+\label{subsec:uaviris}
 %--------------------------------------------
 
-An optimization problem is related to finding the best solution (relative to a certain criterion) among a set of available alternatives. For instance, the popular bin packaging problem that aims to find the number of boxes of a certain size to store a set of objects of indicated sizes; optimization involves, for example, finding the least amount of boxes. An optimization problem is usually represented as follows:
+The Iris+, introduced by 3DRobotics in Fall 2014, is a 550mm class (measured motor-to-motor) ready-to-fly quadcopter \cite{iris+}. It is powered by a 5100mAh battery driving 4 950kV motors through a 4-in-1 electronic speed controller. It includes a Pixhawk flight control board (described below), an internal uBlox GPS with integrated 3-axis compass for navigation, and a 915MHz radio (or 433MHz, depending on country) for communication with a ground control station. Also included is a full-featured remote control transmitter with a preconfigured receiver onboard the drone. The Iris+ has an advertised flight time of 16-22 min. As of January 2016, the Iris+ retails for \$600, very reasonable for a vehicle with its capabilities.
 
-\begin{equation}
-	\label{eq:optproblema}
-	\begin{array}{cc}
-		\min & f(\textbf{x}),  \\
-		\textrm{ s.t. } & \textbf{x}\in\Omega.\\
-	\end{array}
-\end{equation}	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{iris.eps}
+	\caption{The 3DR Iris+.\label{fig:iris}}
+	\end{figure}
 
-\noindent where $\Omega$ is a set of the problem constraints and $f(x)$ is the function to optimize.
-	
-An optimization problem can be defined as a finite set of variables, where the correct values for the variables specify the optimal solution. If the variables are of the set of real, the problem is called continuous, and if they can only have a finite set of distinct values, the problem is called combinatorial~\cite{korte2012combinatorial}.
+Control of the Iris+ is facilitated via the Pixhawk flight control board \cite{meier2011pixhawk}. Developed by researchers at ETH Zurich, the Pixhawk is open source and very widely adopted. It is suitable for use in copters, planes and ground-based rovers. Connectivity options are numerous, allowing for use of a wide array of external devices such as GPS, range finders and companion computers. Internally, the unit integrates a three-axis accelerometer, a three-axis gyroscope, a three-axis compass and a barometer. These sensors allow for determination of motion, orientation, heading and relative altitude, respectively.
 
-%Two distinctions need to be made to better understand the universe of optimization problems. The first is to distinguish a problem which refers to a more general class, for example, the problem of packaging, and an example representing a special type of problem, for example the problem of packaging, wherein there are 5 packages for packaging 25 objects of different sizes. The second distinction concerns the existence of two categories of problem classes: the abstract problem classes and the concrete problem classes. As the name itself suggests, the second category refers to problems that have "concrete existence," that is, problems for which instances can be created. The BPP corresponds to this category. Together they are also part of a more abstract class: grouping problems. Only with the problem of abstract classes, it is impossible to define instances. In fact, as shown in Figure~\ref{fig:problemasDeOtimizacao}, the classes of concrete and abstract problems form a hierarchy of optimization problems.
-%
-%\begin{figure*}[h]
-%	\centering
-%	\includegraphics[width=1.0\textwidth]{problemasDeOtimizacao.eps}
-%	\caption{Some Optimization Problems.\commentib{Falta apenas traduzir a imagem.} \label{fig:problemasDeOtimizacao}}
-%	\end{figure*}
-%	
-%	An optimization problem can be defined as a finite set of variables, where the correct values for the variables specify the optimal solution. If the variables are of the set of real, the problem is called continuous, and if they can only have a finite set of distinct values, the problem is called combinatorial \protect\cite{francq2011optimization}.
-%	
-%	In order for the optimization problems to be solved, it is necessary to develop a method that solves them, which are the algorithms. An important category of problems are the NP-hard problems, where they can only be solved by certain algorithms that try to arrive at the optimal solution of that determined problem.
-%	
-%	When the optimal solution of an NP-hard problem is not guaranteed, this type of method is called a heuristic. A heuristic is an intuitive way of solving a particular problem, where the best possible solution is not guaranteed.
-%	
-%	Every optimization problem is basically characterized by having an objective function, which can be called cost function when it is desired to minimize it or utility function when it is desired to maximize it, and a set of constraints that delimit the space of viable solutions, or Be the region where the solutions are that can be accepted. The objective function contains a set of variables to which values must be assigned in a systematic way so as to walk through the search space and find the one that optimizes the result to be searched, in case a maximization problem finds the highest possible value while in a Minimize the value. In both cases the solution must satisfy the set of constraints imposed to be accepted. 
+    \begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\columnwidth]{pixhawk.eps}
+	\caption{The Pixhawk flight control board. Numerous ports allow for connection of a multitude of external sensors and devices.\label{fig:pixhawk}}
+	\end{figure}
 
+%--------------------------------------------
+\subsection{Software}
+\label{subsec:software}
+%--------------------------------------------
+In this section we discuss the third-party open-source software that is integral to the vehicle. It is distinct from that we have developed as part of subsequent research projects. Firmware for the Pixhawk comes in the form of two distinct, but cooperating, open source efforts: APM \cite{ardupilotdev} and PX4 \cite{meieretalPX42015}. Both flight stacks have robust and supportive development communities and are updated frequently. MAVLink \cite{mavilink}, a message-based communication protocol, underlies both efforts. In our vehicles, we use the APM flight stack.
 
-%	One can interpret the space of solutions as being a subset of Euclidean space \(\R^n\). Each variable is a dimension of space. For a function with two variables it is possible to form in a two-dimensional space and with the addition of a third dimension to the result of the function with \(x\) and \(y\) as input it is possible to observe the behaviour of the function as The \(x\) and the \(y\) of the function undergo variation. In Figure ~\ref{fig:sol} a two-dimensional graph is shown in which the variation of the function value causes changes in the gray scale. For larger values ??a darker gray is obtained and for smaller values ??a lighter gray is obtained. With this, one can observe the space of solutions in a panoramic way in the two-dimensional space and it is verified that as it approaches the center the function generates smaller values. In it it is also possible to notice that the x-shaped marks, which represent the solutions found, vary towards the local minimum that is in the middle of the search space. The heuristic used to search for the optimal solution in this case was to look for neighbouring solutions that minimized the cost of the function in the same way that a sphere that rolls over an inclined plane stabilizes when it reaches a valley that would be the local minimum Function. However, this heuristic is not always the most adequate, as will be seen later.
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.5\textwidth]{sol.eps}
-%	\caption{Walking through the space of solutions\label{fig:sol}}
-%\end{figure}
+MAVLink provides messages that allow for accessing and changing vehicle parameter values, checking vehicle status and navigation, changing, for example, vehicle position, attitude and velocity. The protocol is extensible, allowing users to define new messages for their purposes. However, the provided message set is sufficiently robust that we have not had the need to do this.
+
+In 2015, 3DR introduced DroneKit-Android, a Android API for developing MAV applications \cite{dronekit}. DroneKit frees researchers and developers from many of the low-level aspects of MAVLink, providing a high-level interface for connecting to, monitoring and controlling a vehicle.
+
+Vehicle configuration and sensor calibration are easily facilitated by ground control station software (GCS). Mission Planner (Windows only) and APM Planner (multi-platform) are both freely available. We use Mission Planner due to its ease of installation.
 
 %%%%%%%%%%%%%%%
 \section{UAV Movement System}

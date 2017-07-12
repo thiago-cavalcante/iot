@@ -64,65 +64,38 @@ J.~Pehcevski and B.~Piwowarski, ``Evaluation metrics for structured text
 \bibitem{cplex2003ilog}
 S.~CPLEX, ``Ilog,'' \emph{Inc., Armonk, NY}, 2003.
 
-\bibitem{doherty2009temporal}
-P.~Doherty, J.~Kvarnstr{\"o}m, and F.~Heintz, ``A temporal logic-based planning
-  and execution monitoring framework for unmanned aircraft systems,''
-  \emph{Autonomous Agents and Multi-Agent Systems}, vol.~19, no.~3, pp.
-  332--377, 2009.
-
-\bibitem{whalley2005design}
-M.~Whalley, M.~Freed, R.~Harris, M.~Takahashi, G.~Schulein, and J.~Howlett,
-  ``Design, integration, and flight test results for an autonomous surveillance
-  helicopter,'' in \emph{Proceedings of the AHS International Specialists'
-  Meeting on Unmanned Rotorcraft}, 2005.
-
-\bibitem{baer1998nasa}
-J.~Baer-Riedhart, ``Nasa environmental research aircraft and sensor technology
-  program,'' \emph{Aerospace America, January}, 1998.
-
-\bibitem{fabiani2007autonomous}
-P.~Fabiani, V.~Fuertes, A.~Piquereau, R.~Mampey, and
-  F.~Teichteil-K{\"o}nigsbuch, ``Autonomous flight and navigation of vtol uavs:
-  from autonomy demonstrations to out-of-sight flights,'' \emph{Aerospace
-  Science and Technology}, vol.~11, no.~2, pp. 183--193, 2007.
-
-\bibitem{teichteil2007multi}
-F.~Teichteil-K{\"o}nigsbuch and P.~Fabiani, ``A multi-thread decisional
-  architecture for real-time planning under uncertainty,'' in \emph{3rd
-  ICAPS'07 Workshop on Planning and Plan Execution for Real-World Systems},
-  2007.
-
-\bibitem{adolf2010onboard}
-F.~Adolf and F.~Andert, \emph{Onboard mission management for a {VTOL} {UAV}
-  using sequence and supervisory control}.\hskip 1em plus 0.5em minus
-  0.4em\relax INTECH Open Access Publisher, 2010.
-
-\bibitem{rodriguezstudy}
-V.~Rodr{\'\i}guez-Fern{\'a}ndez, H.~D. Men{\'e}ndez, and D.~Camacho, ``A study
-  on performance metrics and clustering methods for analyzing behavior in uav
-  operations,'' \emph{Journal of Intelligent \& Fuzzy Systems}, no. Preprint,
-  pp. 1--13, 2016.
-
-\bibitem{ramirez2014solving}
-C.~Ramirez-Atencia, G.~Bello-Orgaz, M.~D. R-Moreno, and D.~Camacho, ``Solving
-  {uav} mission planning based on temporal constaint satisfaction problem using
-  genetic algorithms,'' in \emph{Proceedings of the 20th International
-  Conference on Principles and Practice of Constraint Programming}, 2014, pp.
-  65--71.
-
-\bibitem{korte2012combinatorial}
-B.~Korte and J.~Vygen, \emph{Combinatorial Optimization: Theory and
-  Algorithms}.\hskip 1em plus 0.5em minus 0.4em\relax Springer Berlin
-  Heidelberg, 2012.
-
-\bibitem{dronekit}
+\bibitem{iris+}
 \BIBentryALTinterwordspacing
-I.~3D~Robotics. Dronekit. [Online]. Available: \url{dronekit.io}
+D.~Robotics, ``Iris+,'' 2014, accessed in: 13/06/2017. [Online]. Available:
+  \url{\url{3drobotics.com/iris-plus}}
 \BIBentrySTDinterwordspacing
 
 \bibitem{meier2011pixhawk}
 L.~Meier, P.~Tanskanen, F.~Fraundorfer, and M.~Pollefeys, ``Pixhawk: A system
   for autonomous flight using onboard computer vision,'' in \emph{{IEEE}
   international conference on Robotics and automation}, 2011, pp. 2992--2997.
+
+\bibitem{ardupilotdev}
+\BIBentryALTinterwordspacing
+A.~Developers, ``Ardupilot development site,'' 2015, accessed in: 13/06/2017.
+  [Online]. Available: \url{\url{dev.ardupilot.com}}
+\BIBentrySTDinterwordspacing
+
+\bibitem{meieretalPX42015}
+L.~Meier, D.~Honegger, and M.~Pollefeys, ``Px4: A node-based multithreaded open
+  source robotics framework for deeply embedded platforms,'' 2015.
+
+\bibitem{mavilink}
+\BIBentryALTinterwordspacing
+L.~Meier, P.~Tanskanen, F.~Fraundorfer, and M.~Pollefeys, ``Mavlink common
+  message set,'' 2015, accessed in: 13/06/2017. [Online]. Available: \url{\url{
+  pixhawk.ethz.ch/mavlink}}
+\BIBentrySTDinterwordspacing
+
+\bibitem{dronekit}
+\BIBentryALTinterwordspacing
+I.~3D~Robotics. Dronekit-android. [Online]. Available:
+  \url{android.dronekit.io}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
