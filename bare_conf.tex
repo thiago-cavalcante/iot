@@ -677,103 +677,26 @@ Figure~\ref{fig:useCase} shows that there are three types of inputs in the wareh
 
 The task to be performed is the production of the client order (cf. Definition~\ref{def:pedido}), where a given UAV collects supplies from the warehouse, takes that to the production line, and once the production of a certain product is finished, the UAV delivers it to the client.
 
-\subsection{Mission Planners}
+\subsection{UAV Controller App}
+\label{subsec:app}
 
-In this study, we considered that mission planner is a software that generates a production mission (cf. Definition~\ref{def:prodMission}) given the warehouse and customer order. This program generates a \texttt{.mission} extension file containing a set of mission commands (cf. Definition~\ref{def:missioncommand}), as described in Section~\ref{sec:uav}. Two examples of planners are presented in this work and are employed to demonstrate the cost evaluation methodology.
+We developed an Android application to connect to the UAV via usb (radio signal module) or udp (simulated uav) in order to create a client order and make the UAV execute it autonomously and the user can visualize and supervise the operation.
 
-\subsubsection{Planner 1}
-
-In Algorithm~\ref{alg:planA}, we show a strategy to solve the mission planning problem and we denoted it as Planner 1. In this particular algorithm, the production of X products has a higher priority over Y, {\it i.e.}, the inputs are firstly allocated to production of X orders, and the production of Y products begins if there is no other X to be produced. The general steps of planner 1 are described in Algorithm~\ref{alg:planA}.
-%
-\begin{algorithm}[ht]
-\scriptsize
-\KwIn{warehouse}
-\KwIn{order}
-\KwOut{mission file \textit{.mission}}
-\Begin{
-check the order\;
-\Repeat{production of all X elements finish}{
-go to the warehouse\;
-\Repeat{bring 2 A elements}{
-	get input A\;
-	bring to the production line X\;
-}
-go to the warehouse\;
-get the input C\;
-bring to the production line X\;
-wait X to be produced\;
-bring X to the client\;
-}
-\Repeat{production of all Y elements finish}{
-go to the warehouse\;
-\Repeat{bring 2 B elements}{
-	get input B\;
-	bring to the production line Y\;
-}
-go to the warehouse\;
-get the input C\;
-bring to the production line Y\;
-wait Y to be produced\;
-bring Y to the client\;
-}
-}
-\captionsetup{list=no}
-\caption{Planner 1}\label{alg:planA}
-\end{algorithm}
-
-\subsubsection{Planner 2}
-
-The strategy for Planner 2 is a bit more complex than Planner 1. In the Planner 2 strategy, the UAV starts to bring all the necessary inputs to make the first X product, taking all the A, B and C inputs, respectively, to the production line X. After bring all the necessary inputs to produce the first X product, the production line X starts to produce the X product and while the production line X is producing, the UAV goes to the warehouse to get the necessary inputs to produce the next product (either Planner 1 and Planner 2 produce firstly the X products e then all the Y products). However, when the X product finishes producing, the UAV knows the instant and goes to the production line to get the X product to bring to the client place; and after that, the UAV goes back to bring the rest of the inputs. The UAV keeps work in the same way until it brings all the products to the client place. Differently to the Planner 1, the Planner 2 does not wait the production in the production line. The UAV works as a scheduler and executes the mission faster than Planner 1 strategy, because it does not enter in a busy wait state. The general steps of planner 2 are shown in the Algorithm~\ref{alg:planB}.
-%
-\begin{algorithm}[ht]
-\scriptsize
-\KwIn{warehouse}
-\KwIn{order}
-\KwOut{mission file \textit{.mission}}
-\Begin{
-initialize $t_x$\;
-initialize $t_y$\;
-check the order\;
-\Repeat{production of all X elements finish}{
-\uIf{the counter of that X is not $t_X$}{
-go to the warehouse\;
-\Repeat{until bring 2 A elements}{
-	get the input A\;
-	bring to the production line X\;
-}
-go to the warehouse\;
-get the input C\;
-bring to the production line X\;
-start the counter of this X (production time)\;
-keep producing\;
-}
-\Else{go back to the production line X\;
-		bring X to the client\;
-		go back to producing\;}
-}
-\Repeat{production of all Y elements finish}{
-\uIf{the counter of that Y is not $t_Y$}{
-go to the warehouse\;
-\Repeat{until bring 2 B elements}{
-	get the input B\;
-	bring to the production line Y\;
-}
-go to the warehouse\;
-get the input C\;
-bring to the production line Y\;
-start the counter of this Y (production time)\;
-keep producing\;
-}
-\Else{go back to the production line Y\;
-		bring Y to the client\;
-		go back to producing\;}
-}
-}
-\captionsetup{list=no}
-\caption{Planner 2}\label{alg:planB}
-\end{algorithm}
-
-Where $t_X$ and $t_Y$ are the production time (cf. Definition~\ref{def:tempoProducao}) of the production lines X and Y, respectively.
+\begin{figure}[H]
+\centering
+\begin{minipage}{.25\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{appMain.PNG}
+  \captionof{figure}{Main Screen.}
+  \label{fig:appMain}
+\end{minipage}%
+\begin{minipage}{.25\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{appSec.PNG}
+  \captionof{figure}{Secondary Screen.}
+  \label{fig:appSec}
+\end{minipage}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
