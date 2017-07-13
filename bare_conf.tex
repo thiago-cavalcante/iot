@@ -367,7 +367,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Radio Communication to Control and Run an Autonomous Mission for UAVs}
+\title{Radio Communication to Control and Run an Autonomous Mission for UAVs via a Mobile App}
 
 
 % author names and affiliations
@@ -428,7 +428,7 @@ Email: celsocarvalho75@gmail.com}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-This paper presents the development of mission planners in intralogistics for a commercial unmanned aerial vehicle equipped with a robotic gripper in an industrial environment, which consists of an input warehouse, production lines, and a product depot. In this study, the planner produces the needed commands for carrying out a given mission, which includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the client (product depot). It was developed two different approaches for mission planning: in the first approach, a simple heuristic is used to solve the mission problem, where a UAV gets the necessary inputs to produce a product, from the warehouse, and bring to the respective production line and the UAV waits in production line site to finish the production of the product; in the second approach, a technique with task scheduling (production process) is employed; both approaches follow a set of production rules. An evaluation of the developed mission planners is performed, verifying the cost of both approaches, measuring the execution time, and comparing those results with the optimum cost obtained with the IBM ILOG CPLEX optimizer.
+This paper presents the development of a Android application for the industry in order to start the production and supervise the process. It's used an unmanned aerial vehicle (UAV) equipped with a robotic gripper, which consists in an industrial scenario with an input warehouse, production lines, and a product depot. In the application, there is a mission planner that produces the needed commands for carrying out a given mission (the production of a product), which includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the client (product depot).
 \end{abstract}
 
 % no keywords
@@ -608,10 +608,10 @@ The UAV IRIS+ is integrated into a robot gripper to take and leave packages duri
 	\label{fig:hardArch}
 \end{figure}
 
-In the software architecture, the Mission Planner (cf. Definition~\ref{def:planejadorMissao}) reads the warehouse inputs and client order and produces a \texttt{.mission} file, which contains the list of mission commands needed for producing the required client order. This \texttt{.mission} file is used by a UAV Control Program to control the UAV and to produce the low-level movement commands using MAVLink protocol (cf. Definition~\ref{def:missioncommand}). Figure~\ref{fig:sysArch} shows the mission planning framework software components.
+In the software architecture, the mission planner (cf. Definition~\ref{def:planejadorMissao}) reads the warehouse inputs and client order and generates the production mission, which contains the list of mission commands needed for producing the required client order. Figure~\ref{fig:sysArch} shows the mission planning framework software components.
 
 
-In order to control the UAV from a PC, we have used the dronekit API that translates MAVLink commands to a Python function. In the ground station, the PC is running the UAV Control Program that controls the UAV using a radio module connected to the PC via USB. We have created a bunch of functions in the control program for the most common UAV actions. The movement functions (cf. Definition~\ref{def:movFunc}) are described in Table~\ref{table:movfunc}.
+In order to control the UAV from a Android application, we have used the dronekit API that translates MAVLink commands to a Java function. The application talks to the UAV using a radio module connected via USB. We have created a bunch of functions in the control program for the most common UAV actions. The movement functions (cf. Definition~\ref{def:movFunc}) are described in Table~\ref{table:movfunc}.
 %
 %\begin{itemize}
 %\item \texttt{TakeOff}: takeoff command of the UAV;
@@ -680,7 +680,7 @@ The task to be performed is the production of the client order (cf. Definition~\
 \subsection{UAV Controller App}
 \label{subsec:app}
 
-We developed an Android application to connect to the UAV via usb (radio signal module) or udp (simulated uav) in order to create a client order and make the UAV execute it autonomously and the user can visualize and supervise the operation.
+We developed an Android application to connect to the UAV via usb (radio signal module) or udp (simulated uav) in order to create a client order and make the UAV executes it autonomously and the user can visualize and supervise the operation.
 
 \begin{figure}[H]
 \centering
@@ -698,11 +698,30 @@ We developed an Android application to connect to the UAV via usb (radio signal 
 \end{minipage}
 \end{figure}
 
+Internally in the app, it's implemented the mission planner and the controller module to send commands to the UAV via radio using the MAVLink protocol in the dronekit API.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Evaluation}
 \label{sec:results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
+
+The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we can see, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}ccc@{}}
+\cmidrule(l){2-3}
+                                        & \cellcolor[HTML]{FF7774}\textbf{Real UAV} & \cellcolor[HTML]{5FCE89}\textbf{Virtual UAV} \\ \cmidrule(l){2-3} 
+\cellcolor[HTML]{C0C0C0}\textbf{Tests} & \textit{\textbf{Flight Time (s)}}            & \textit{\textbf{Flight Time (s)}}            \\
+\cellcolor[HTML]{C0C0C0}1               & 441,72                                       & 430,830                                       \\
+\cellcolor[HTML]{C0C0C0}2               & 440,18                                       & 436,885                                       \\
+\cellcolor[HTML]{C0C0C0}3               & 447,51                                       & 441,681                                       \\
+\cellcolor[HTML]{C0C0C0}4               & 438,19                                       & 441,277                                       \\
+\cellcolor[HTML]{C0C0C0}5               & 445,85                                       & 451,865                                       \\ \bottomrule
+\end{tabular}
+\caption{Mission Flight Time Tested in Real and Virtual UAV.\label{table:tests}}
+\end{table}
+
 
 \section{Conclusion}
 \label{sec:conclusao}
@@ -723,10 +742,10 @@ Future work includes the use of computational vision for the recognition of inpu
 
 
 % use section* for acknowledgment
-\section*{Acknowledgment}
+%\section*{Acknowledgment}
 
 
-The authors would like to thank...
+%The authors would like to thank...
 
 
 

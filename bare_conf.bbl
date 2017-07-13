@@ -24,8 +24,8 @@
 \bibitem{drone4logistic}
 \BIBentryALTinterwordspacing
 Service-drone, ``Drones for logistic and transport | multirotor,'' 2014,
-  accessed in: 12/02/2016. [Online]. Available:
-  \url{\url{http://www.service-drone.com/en/production/logistics-and-transport}}
+  accessed in: 12/05/2017. [Online]. Available:
+  \url{www.service-drone.com/en/production/logistics-and-transport}
 \BIBentrySTDinterwordspacing
 
 \bibitem{pascarella2013autonomic}
@@ -67,7 +67,7 @@ S.~CPLEX, ``Ilog,'' \emph{Inc., Armonk, NY}, 2003.
 \bibitem{iris+}
 \BIBentryALTinterwordspacing
 D.~Robotics, ``Iris+,'' 2014, accessed in: 13/06/2017. [Online]. Available:
-  \url{\url{3drobotics.com/iris-plus}}
+  \url{3drobotics.com/iris-plus}
 \BIBentrySTDinterwordspacing
 
 \bibitem{meier2011pixhawk}
@@ -78,7 +78,7 @@ L.~Meier, P.~Tanskanen, F.~Fraundorfer, and M.~Pollefeys, ``Pixhawk: A system
 \bibitem{ardupilotdev}
 \BIBentryALTinterwordspacing
 A.~Developers, ``Ardupilot development site,'' 2015, accessed in: 13/06/2017.
-  [Online]. Available: \url{\url{dev.ardupilot.com}}
+  [Online]. Available: \url{dev.ardupilot.com}
 \BIBentrySTDinterwordspacing
 
 \bibitem{meieretalPX42015}
@@ -88,13 +88,13 @@ L.~Meier, D.~Honegger, and M.~Pollefeys, ``Px4: A node-based multithreaded open
 \bibitem{mavilink}
 \BIBentryALTinterwordspacing
 L.~Meier, P.~Tanskanen, F.~Fraundorfer, and M.~Pollefeys, ``Mavlink common
-  message set,'' 2015, accessed in: 13/06/2017. [Online]. Available: \url{\url{
-  pixhawk.ethz.ch/mavlink}}
+  message set,'' 2015, accessed in: 13/06/2017. [Online]. Available:
+  \url{pixhawk.ethz.ch/mavlink}
 \BIBentrySTDinterwordspacing
 
 \bibitem{dronekit}
 \BIBentryALTinterwordspacing
-I.~3D~Robotics. Dronekit-android. [Online]. Available:
+I.~3D~Robotics. Dronekit-android. Accessed in: 20/05/2017. [Online]. Available:
   \url{android.dronekit.io}
 \BIBentrySTDinterwordspacing
 
