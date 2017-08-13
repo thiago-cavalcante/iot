@@ -1,0 +1,74 @@
+\begin{thebibliography}{}
+
+\bibitem[3D~Robotics ]{dronekit}
+3D~Robotics, I.
+\newblock Dronekit-android.
+\newblock accessed in: 20/05/2017.
+
+\bibitem[Developers 2015]{ardupilotdev}
+Developers, A. (2015).
+\newblock Ardupilot development site.
+\newblock accessed in: 13/06/2017.
+
+\bibitem[Finn and Scheding 2012]{finn2012developments}
+Finn, A. and Scheding, S. (2012).
+\newblock {\em Developments and challenges for autonomous unmanned vehicles}.
+\newblock Springer.
+
+\bibitem[Hern 2014]{hern2014dhl}
+Hern, A. (2014).
+\newblock {DHL} launches first commercial drone parcelcopter delivery service.
+\newblock {\em The Guardian}.
+
+\bibitem[Krozel 1988]{krozel1988search}
+Krozel, J.~A. (1988).
+\newblock Search problems in mission planning and navigation of autonomous
+  aircraft.
+\newblock Technical report.
+
+\bibitem[Meier et~al. 2015a]{meieretalPX42015}
+Meier, L., Honegger, D., and Pollefeys, M. (2015a).
+\newblock Px4: A node-based multithreaded open source robotics framework for
+  deeply embedded platforms.
+
+\bibitem[Meier et~al. 2011]{meier2011pixhawk}
+Meier, L., Tanskanen, P., Fraundorfer, F., and Pollefeys, M. (2011).
+\newblock Pixhawk: A system for autonomous flight using onboard computer
+  vision.
+\newblock In {\em {IEEE} international conference on Robotics and automation},
+  pages 2992--2997.
+
+\bibitem[Meier et~al. 2015b]{mavilink}
+Meier, L., Tanskanen, P., Fraundorfer, F., and Pollefeys, M. (2015b).
+\newblock Mavlink common message set.
+\newblock accessed in: 13/06/2017.
+
+\bibitem[M{\"u}ller et~al. 2012]{muller2012analyzing}
+M{\"u}ller, E., Hopf, H., and Krones, M. (2012).
+\newblock Analyzing energy consumption for factory and logistics planning
+  processes.
+\newblock In {\em IFIP International Conference on Advances in Production
+  Management Systems}, pages 49--56. Springer.
+
+\bibitem[Pascarella et~al. 2013]{pascarella2013autonomic}
+Pascarella, D., Venticinque, S., and Aversa, R. (2013).
+\newblock Autonomic agents for real time {UAV} mission planning.
+\newblock In {\em IEEE 10th International Conference on Autonomic and Trusted
+  Computing}, pages 410--415. IEEE.
+
+\bibitem[Robotics 2014]{iris+}
+Robotics, D. (2014).
+\newblock Iris+.
+\newblock accessed in: 13/06/2017.
+
+\bibitem[Schwarz and Sauer 2012]{schwarz2012towards}
+Schwarz, C. and Sauer, J. (2012).
+\newblock Towards decentralised agv control with negotiations.
+\newblock In {\em STAIRS}, pages 270--281.
+
+\bibitem[Service-drone 2014]{drone4logistic}
+Service-drone (2014).
+\newblock Drones for logistic and transport | multirotor.
+\newblock accessed in: 12/05/2017.
+
+\end{thebibliography}
