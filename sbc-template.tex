@@ -15,7 +15,6 @@
 
 %\usepackage{caption}
 %\usepackage{subcaption}
-
 \newtheorem{myDefinition}{Definition}
      
 \sloppy
@@ -215,6 +214,7 @@ In order to control the UAV from a Android application, we have used the droneki
 \begin{table}[H]
 \scriptsize
 \centering
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|l|l|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Command}} & \multicolumn{1}{c|}{\textbf{Description}}           \\ \hline
@@ -224,7 +224,7 @@ In order to control the UAV from a Android application, we have used the droneki
 \texttt{LeavePackage}                & leaves an input/product (gripper)   \\ \hline
 \texttt{Wait}                        & makes the UAV to hover (wait)                       \\ \hline
 \texttt{Land}                        & lands the UAV                                       \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{Description of movement functions}
 \label{table:movfunc}
 \end{table}
@@ -288,7 +288,11 @@ We developed an Android application to connect to the UAV via usb (radio signal 
 \end{minipage}
 \end{figure}
 
-Internally in the app, it's implemented the mission planner and the controller module to send commands to the UAV via radio using the MAVLink protocol in the dronekit API.
+Internally in the app, it's implemented the mission planner (cf. Definition~\ref{def:planejadorMissao}) and the controller module to send commands to the UAV via radio using the MAVLink protocol in the dronekit API.
+
+\subsubsection{App Mission Planner}
+\label{subsubsec:mp}
+In the Mission Planner strategy, the UAV starts to bring all the necessary inputs to make the first product X, taking all the A, B and C inputs, respectively, to the production line X. After bring all the necessary inputs to produce the first X product, the production line X starts to produce the X product and while the production line X is producing, the UAV goes to the warehouse to get the necessary inputs to produce the next product (the planner produce firstly the X products e then all the Y products). However, when the X product finishes producing, the UAV knows the instant and goes to the production line to get the X product to bring to the client place; and after that, the UAV goes back to bring the rest of the inputs. The UAV keeps work in the same way until it brings all the products to the client place.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Evaluation}
@@ -299,6 +303,7 @@ In this section we can see the experimental results of the Android application t
 The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we can see, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
 \begin{table}[H]
 \centering
+\resizebox{\textwidth}{!}{
 \begin{tabular}{@{}ccc@{}}
 \cmidrule(l){2-3}
                                         & \cellcolor[HTML]{FF7774}\textbf{Real UAV} & \cellcolor[HTML]{5FCE89}\textbf{Virtual UAV} \\ \cmidrule(l){2-3} 
@@ -308,7 +313,7 @@ The Table~\ref{table:tests} shows the experiments tested in a real UAV and a vir
 \cellcolor[HTML]{C0C0C0}3               & 447,51                                       & 441,681                                       \\
 \cellcolor[HTML]{C0C0C0}4               & 438,19                                       & 441,277                                       \\
 \cellcolor[HTML]{C0C0C0}5               & 445,85                                       & 451,865                                       \\ \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{Mission Flight Time Tested in Real and Virtual UAV.\label{table:tests}}
 \end{table}
 
