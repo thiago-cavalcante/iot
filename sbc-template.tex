@@ -25,7 +25,7 @@
 
 
 \address{Federal University of Amazonas\\
-  Av. General Rodrigo Octavio Jordão Ramos, 1200 - Coroado I, Manaus - AM, Brazil, 69067-005
+  Av. General Rodrigo Octavio Jord\~{a}o Ramos, 1200 - Coroado I, Manaus - AM, Brazil, 69067-005
 \nextinstitute
   Master Degree in Electrical Engineering\\
   Federal University of Amazonas, Brazil.
@@ -65,7 +65,7 @@ In summary, the main contributions of this study are:
 \item a mission planner directly implemented in the app.
 \end{itemize}
 	
-\textit{Outline}. Section~\ref{sec:background} provides the fundamentals of mission planning and optimization problems. Section~\ref{sec:uav} describes the UAV movement system used in this work. Section~\ref{sec:method} explains the proposed evaluation methodology in further details. Section~\ref{sec:results} describes the experimental procedures and results in order to explore and demonstrate the potential of methodology, and, finally, Section~\ref{sec:conclusao} concludes this study and describes future work.
+\textit{Outline}. Section~\ref{sec:terms} presents the terminologies used; Sections~\ref{subsec:uaviris}, \ref{subsec:software}, and \ref{sec:uav} present hardware, software and UAV motion control system respectively; Section~\ref{sec:method} explains the proposed evaluation scenario and methodology; Section~\ref{sec:results} describes the experimental procedures, and, finally, Section~\ref{sec:conclusao} concludes the paper and describes future work.
 
 %--------------------------------------------
 \section{Preliminaries}
@@ -258,7 +258,7 @@ The task to be performed is the production of the client order (cf. Definition~\
 \subsection{UAV Controller App}
 \label{subsec:app}
 
-We developed an Android application to connect to the UAV via usb (radio signal module) or udp (simulated uav) in order to create a client order and make the UAV executes it autonomously and the user can visualize and supervise the operation.
+We developed an Android application to connect to the UAV in order to create a client order and make the UAV executes it autonomously. Then, a user can visualize and supervise the operation.
 
 \begin{figure}[]
 \centering
@@ -276,20 +276,28 @@ We developed an Android application to connect to the UAV via usb (radio signal 
 \end{minipage}
 \end{figure}
 
-Internally in the app, it's implemented the mission planner (cf. Definition~\ref{def:planejadorMissao}) and the controller module to send commands to the UAV via radio using the MAVLink protocol in the DroneKit API.
+Internally in the app, it is implemented the mission planner (cf. Definition~\ref{def:planejadorMissao}) and the controller module to send commands to the UAV via radio using the MAVLink protocol in the DroneKit API.
+
+We are able to communicate to drones using two different methods:
+\begin{itemize}
+\item USB - by using a radio signal module, we are able to obtain data from a real UAV. Such module comes with Iris+, and it is able to connect to an Android device that supports the USB On-The-Go (OTG) specification;
+\item UDP - when simulating an UAV using MAVLink, we are able to fetch data from such simulation. We are able to redirect data from MAVLink to a specified IP in the network, \textit{i.e.}, the Android device's IP.
+\end{itemize}
+
+It is important to point out that such connection methods are needed in order to start the communication between an UAV and the app, but since we use the DroneKit API, the implementation of acquiring and displaying drone data is identical.
 
 \subsubsection{App Mission Planner}
 \label{subsubsec:mp}
 In the Mission Planner strategy, the UAV starts to bring all the necessary inputs to make the first product X, taking all the A, B and C inputs, respectively, to the production line X. After bring all the necessary inputs to produce the first X product, the production line X starts to produce the X product and while the production line X is producing, the UAV goes to the warehouse to get the necessary inputs to produce the next product (the planner produce firstly the X products e then all the Y products). However, when the X product finishes producing, the UAV knows the instant and goes to the production line to get the X product to bring to the client place; and after that, the UAV goes back to bring the rest of the inputs. The UAV keeps work in the same way until it brings all the products to the client place.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Evaluation}
 \label{sec:results}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
-The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we can see, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
+Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted on the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the Warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
 
+In the simulated experiment we used the same coordinates as in the real experiment in order to perform the production mission. However, in the simulated experiment the 3DRobotics simulator was used to simulate the UAV and its placement in the GPS coordinates space.
 
 \begin{table}[H]
 \centering
@@ -305,6 +313,25 @@ The Table~\ref{table:tests} shows the experiments tested in a real UAV and a vir
 \cellcolor[HTML]{C0C0C0}5               & 445,85                                       & 451,865                                       \\ \bottomrule
 \end{tabular}}
 \caption{Mission Flight Time Tested in Real and Virtual UAV.\label{table:tests}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\bfseries Name & \bfseries Latitude & \bfseries Longitude \\
+\hline
+Warehouse & cell5 & cell6 \\
+\hline
+Production Line X & cell8 & cell9 \\
+\hline
+Production Line Y & cell8 & cell9 \\
+\hline
+Client & cell8 & cell9 \\
+\hline
+\end{tabular}
+\caption{Experiment locations.}
+\label{table:positions}
 \end{table}
 
 
