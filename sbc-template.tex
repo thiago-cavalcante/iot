@@ -40,7 +40,7 @@
 \maketitle
 
 \begin{abstract}
-  This paper presents the development of an Android application for the industry in order to start the production and supervise the process in production lines. A unmanned aerial vehicle (UAV) is used, equipped with a robotic gripper, which consists in an industrial scenario with an input warehouse, production lines, and a product depot. In the application, there is a mission planner that produces the needed commands for carrying out a given mission (the production of a product), which includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the client (product depot). It is presented how the Android application is useful to assist in the supervisioning process for line managers/leaders.
+  This paper presents the development of an Android application that controls an unmanned aerial vehicle (UAV). The UAV is equipped with a robotic griper and is used to start and supervise the production process in an industrial scenario composed of an input warehouse, production lines, and a product depot. The application has a mission planner that produces commands for carrying out a mission for the manufacturing of products. The manufacturing includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the product depot. It is presented how the Android application is useful to assist in the supervising process for line managers/leaders.
 \end{abstract}
 
 
@@ -48,7 +48,7 @@
 % no \IEEEPARstart
 \label{sec:introduction}
 
-Logistics has become a competitive and fundamental factor for organizations, involving the management, conservation, and supervision of freight transport. In addition, excellent logistics means customer satisfaction; so speed is still an important factor in a successful logistics process~\cite{drone4logistic}. Currently, one of the solutions to this type of problem is the use of unmanned aerial vehicles (UAVs). Nowadays, UAVs are mostly remotely piloted vehicles (RPV), since their operations are carried out by ground operators. If the tasks performed by a UAV are performed autonomously, it would relieve the work of these operators, since they perform tedious and repetitive tasks~\cite{pascarella2013autonomic}.
+Logistics has become a competitive and fundamental factor for organizations, involving the management, conservation, and supervision of freight transport. In addition, excellent logistics means client satisfaction; so speed is still an important factor in a successful logistics process~\cite{drone4logistic}. Currently, one of the solutions to this type of problem is the use of unmanned aerial vehicles (UAVs). Nowadays, UAVs are mostly remotely piloted vehicles (RPV), since their operations are carried out by ground operators. If the tasks performed by a UAV are performed autonomously, it would relieve the work of these operators, since they perform tedious and repetitive tasks~\cite{pascarella2013autonomic}.
 
 One possible improvement of these logistics systems is the increase of the UAVs automation, which results in costs minimization. Consequently, investments and studies related to stand-alone UAVs are important to the smart factories development~\cite{hern2014dhl}. However, one of the main problems for using autonomous UAVs is the system's reliability and intelligence. Thus, increased employment of autonomous UAVs requires the development of devices, which are able to perform tasks and interact with the environment in an intelligent and reliable way.
 
@@ -56,7 +56,7 @@ Autonomous UAVs need to know what will happen in a future instant and what is th
 
 Both academy and industry have done researches about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
 
-In this work we present an Android application to supervise production lines in real-time, enabling leaders/managers to check statuses and act on failures. It uses the Drone Kit API, which enables sending commands and receiving updates to/from the drone.
+In this work we present an Android application to supervise production lines in real-time, enabling leaders/managers to check statuses and act on failures. It uses the DroneKit API, which enables sending commands and receiving updates to/from the drone.
 
 In summary, the main contributions of this study are:
 \begin{itemize}
@@ -77,71 +77,59 @@ In summary, the main contributions of this study are:
 \label{sec:terms}
 %--------------------------------------------
 
-Key definitions related to the case study and the application developed in this study need to be clarified. All definitions below are adopted in the remainder of this study.
+Key definitions related to the case study and the developed application are defined in this section. All definitions below are adopted in the remainder of the paper.
 
 \begin{myDefinition} 
-\textbf{(Mission Command)} 
-Mission Command is a command created to execute a task such as to go from one location to another, get a package using a robot gripper, and land a UAV.
+\textbf{(Mission Command)}. 
+Mission Command is a command that executes a task such as going from one location to another, get a package using a robot gripper, and land a UAV.
 \label{def:missioncommand}
 \end{myDefinition}
 
 \begin{myDefinition}
-\textbf{(Mission)} 
-Mission is the set of steps and mission commands that the UAV executes to produce the customer's order.
+\textbf{(Mission)}.
+Mission is the set of steps and mission commands that the UAV executes to produce the client's order.
 \label{def:mission}
 \end{myDefinition}
 
 \begin{myDefinition}
-\textbf{(Warehouse)}
-Warehouse is the set of stored raw material available until the moment of entering the productive process. The raw materials, \textit{i.e.}, the inputs available in this work are inputs A, B, and C.
+\textbf{(Warehouse)}.
+Warehouse is the location where a set of stored raw material are available until the moment of entering the productive process. The raw materials, \textit{i.e.}, the inputs available in this work are called inputs A, B, and C.
 \label{def:almoxarifado}
 \end{myDefinition}
 
 \begin{myDefinition} 
-\textbf{(Order)}
-Order is the requisition of products made by the client. In this study, the products are of type X and Y.
+\textbf{(Order)}.
+Order is the product requested by the client. In this study, the products are of type X and Y.
 \label{def:pedido}
 \end{myDefinition}
 
 \begin{myDefinition}
-\textbf{(Production Time)}
-Production time is the time required to produce a product X or Y, after making available all the needed inputs for the production, given by the production rule.
+\textbf{(Production Time)}.
+Production time is the time required to produce a product X or Y, after making available all the inputs and production rule needed for the manufacturing.
 \label{def:tempoProducao}
 \end{myDefinition}
 
 \begin{myDefinition}
- \textbf{(Production Rule)}
+ \textbf{(Production Rule)}.
 Production rule describes what and how many inputs are needed to produce a particular product.
 \label{def:regraProducao}
 \end{myDefinition}
 
 \begin{myDefinition}
-\textbf{(Mission Planner)}
-Mission planner is the agent who performs the planning of a mission, that is, produce all steps and commands needed to carry out a given mission.
+\textbf{(Mission Planner)}.
+Mission planner is the agent who performs the planning of a mission, producing all steps and commands needed to carry out a given mission.
 \label{def:planejadorMissao}
 \end{myDefinition}
 
 \begin{myDefinition}
- \textbf{(Mission File)}
-The mission file is a file that is created for the context of this work, with the extension \textsc{.mission} containing the mission itself.
-\label{def:arquivoMissao}
-\end{myDefinition}
-
-\begin{myDefinition}
- \textbf{(Movement Function)}
-The movement function are functions created in Python using the drokekit API to send commands to the UAV by MAVLink protocol.
-\label{def:movFunc}
-\end{myDefinition}
-
-\begin{myDefinition}
- \textbf{(Production Mission)}
+ \textbf{(Production Mission)}.
 The production mission is the set of steps to produce all the product required by the client.
 \label{def:prodMission}
 \end{myDefinition}
 
 
 %--------------------------------------------
-%\subsection{DroneKit-Android?s API}
+%\subsection{DroneKit-Android API}
 %\label{subsec:dronekit}
 %--------------------------------------------
 
@@ -150,7 +138,7 @@ The production mission is the set of steps to produce all the product required b
 \label{subsec:uaviris}
 %--------------------------------------------
 
-The Iris+, introduced by 3DRobotics in Fall 2014, is a 550mm class (measured motor-to-motor) ready-to-fly quadcopter \cite{iris+}. It is powered by a 5100mAh battery driving 4 950kV motors through a 4-in-1 electronic speed controller. It includes a Pixhawk flight control board (described below), an internal uBlox GPS with integrated 3-axis compass for navigation, and a 915MHz radio (or 433MHz, depending on country) for communication with a ground control station. Also included is a full-featured remote control transmitter with a preconfigured receiver onboard the drone. The Iris+ has an advertised flight time of 16-22 min. As of January 2016, the Iris+ retails for \$600, very reasonable for a vehicle with its capabilities.
+The Iris+, introduced by 3DRobotics in Fall 2014, is a $550$ $mm$ class (measured motor-to-motor) ready-to-fly quadcopter \cite{iris+}. It is powered by a $5100$ $mAh$ battery driving $4950$ $KV$ motors through a 4-in-1 electronic speed controller. It includes a Pixhawk flight control board (described below), an internal uBlox GPS with integrated 3-axis compass for navigation, and a $915$ $MHz$ radio (or $433$ $MHz$, depending on country) for communication with a ground control station. Also included is a full-featured remote control transmitter with a preconfigured receiver onboard the drone. The Iris+ has an advertised flight time of $16$-$22$ $min$. As of January 2016, the Iris+ retails for \$600, very reasonable for a vehicle with its capabilities.
 
 	\begin{figure}[H]
 	\centering
@@ -158,12 +146,12 @@ The Iris+, introduced by 3DRobotics in Fall 2014, is a 550mm class (measured mot
 	\caption{The 3DR Iris+.\label{fig:iris}}
 	\end{figure}
 
-Control of the Iris+ is facilitated via the Pixhawk flight control board \cite{meier2011pixhawk}. Developed by researchers at ETH Zurich, the Pixhawk is open source and very widely adopted. It is suitable for use in copters, planes and ground-based rovers. Connectivity options are numerous, allowing for use of a wide array of external devices such as GPS, range finders and companion computers. Internally, the unit integrates a three-axis accelerometer, a three-axis gyroscope, a three-axis compass and a barometer. These sensors allow for determination of motion, orientation, heading and relative altitude, respectively.
+The control of the Iris+ is facilitated via the Pixhawk flight control board \cite{meier2011pixhawk}. Developed by researchers at ETH Zurich, the Pixhawk is open source and very widely adopted. It is suitable for use in copters, planes and ground-based rovers. Connectivity options are numerous, allowing the use of a wide array of external devices such as GPS, range finders and companion computers. Internally, the unit integrates a three-axis accelerometer, a three-axis gyroscope, a three-axis compass and a barometer. These sensors allow for determination of motion, orientation, heading and relative altitude, respectively.
 
     \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.25\columnwidth]{pixhawk.eps}
-	\caption{The Pixhawk flight control board. Numerous ports allow for connection of a multitude of external sensors and devices.\label{fig:pixhawk}}
+	\caption{The Pixhawk flight control board. Numerous ports allow the connection of a multitude of external sensors and devices.\label{fig:pixhawk}}
 	\end{figure}
 
 %--------------------------------------------
@@ -172,7 +160,7 @@ Control of the Iris+ is facilitated via the Pixhawk flight control board \cite{m
 %--------------------------------------------
 In this section we discuss the third-party open-source software that is integral to the vehicle. It is distinct from that we have developed as part of subsequent research projects. Firmware for the Pixhawk comes in the form of two distinct, but cooperating, open source efforts: APM \cite{ardupilotdev} and PX4 \cite{meieretalPX42015}. Both flight stacks have robust and supportive development communities and are updated frequently. MAVLink \cite{mavilink}, a message-based communication protocol, underlies both efforts. In our vehicles, we use the APM flight stack.
 
-MAVLink provides messages that allow for accessing and changing vehicle parameter values, checking vehicle status and navigation, changing, for example, vehicle position, attitude and velocity. The protocol is extensible, allowing users to define new messages for their purposes. However, the provided message set is sufficiently robust that we have not had the need to do this.
+MAVLink provides messages that allow for accessing and changing vehicle parameter values, checking vehicle status and navigation, changing, for example, vehicle position, altitude and velocity. The protocol is extensible, allowing users to define new messages for their purposes. However, the provided message set is sufficiently so that we have not had the need to extend this.
 
 In 2015, 3DR introduced DroneKit-Android, a Android API for developing MAV applications \cite{dronekit}. DroneKit frees researchers and developers from many of the low-level aspects of MAVLink, providing a high-level interface for connecting to, monitoring and controlling a vehicle.
 
@@ -186,7 +174,7 @@ Vehicle configuration and sensor calibration are easily facilitated by ground co
 % \subsection{UAV Movement System}
 
 %In this section, we first investigate the UAV platform used (3DR IRIS+) in this study, describing the hardware characteristics and the control framework developed for intralogistics missions. 
-The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using a Python library \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol~\cite{meier2011pixhawk}. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
+The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using an API for Android \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol~\cite{meier2011pixhawk}. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
 
 The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we can see the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
 %
@@ -200,7 +188,7 @@ The UAV IRIS+ is integrated into a robot gripper to take and leave packages duri
 In the software architecture, the mission planner (cf. Definition~\ref{def:planejadorMissao}) reads the warehouse inputs and client order and generates the production mission, which contains the list of mission commands needed for producing the required client order. Figure~\ref{fig:sysArch} shows the mission planning framework software components.
 
 
-In order to control the UAV from a Android application, we have used the dronekit API that translates MAVLink commands to a Java function. The application talks to the UAV using a radio module connected via USB. We have created a bunch of functions in the control program for the most common UAV actions. The movement functions (cf. Definition~\ref{def:movFunc}) are described in Table~\ref{table:movfunc}.
+In order to control the UAV from a Android application, we have used the DroneKit API that translates MAVLink commands to a Java function. The application talks to the UAV using a radio module connected via USB. We have created a bunch of functions in the control program for the most common UAV actions. The mission commands (cf. Definition~\ref{def:missioncommand}) are described in Table~\ref{table:movfunc}.
 %
 %\begin{itemize}
 %\item \texttt{TakeOff}: takeoff command of the UAV;
@@ -214,7 +202,7 @@ In order to control the UAV from a Android application, we have used the droneki
 \begin{table}[H]
 \scriptsize
 \centering
-\resizebox{\textwidth}{!}{
+\resizebox{.8\textwidth}{!}{
 \begin{tabular}{|l|l|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Command}} & \multicolumn{1}{c|}{\textbf{Description}}           \\ \hline
@@ -272,7 +260,7 @@ The task to be performed is the production of the client order (cf. Definition~\
 
 We developed an Android application to connect to the UAV via usb (radio signal module) or udp (simulated uav) in order to create a client order and make the UAV executes it autonomously and the user can visualize and supervise the operation.
 
-\begin{figure}[H]
+\begin{figure}[]
 \centering
 \begin{minipage}{.55\textwidth}
   \centering
@@ -288,7 +276,7 @@ We developed an Android application to connect to the UAV via usb (radio signal 
 \end{minipage}
 \end{figure}
 
-Internally in the app, it's implemented the mission planner (cf. Definition~\ref{def:planejadorMissao}) and the controller module to send commands to the UAV via radio using the MAVLink protocol in the dronekit API.
+Internally in the app, it's implemented the mission planner (cf. Definition~\ref{def:planejadorMissao}) and the controller module to send commands to the UAV via radio using the MAVLink protocol in the DroneKit API.
 
 \subsubsection{App Mission Planner}
 \label{subsubsec:mp}
@@ -301,9 +289,11 @@ In the Mission Planner strategy, the UAV starts to bring all the necessary input
 In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
 The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we can see, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
+
+
 \begin{table}[H]
 \centering
-\resizebox{\textwidth}{!}{
+\resizebox{.65\textwidth}{!}{
 \begin{tabular}{@{}ccc@{}}
 \cmidrule(l){2-3}
                                         & \cellcolor[HTML]{FF7774}\textbf{Real UAV} & \cellcolor[HTML]{5FCE89}\textbf{Virtual UAV} \\ \cmidrule(l){2-3} 
@@ -324,7 +314,7 @@ The Table~\ref{table:tests} shows the experiments tested in a real UAV and a vir
 
 We have presented an evaluation methodology for UAV mission planner in an industrial production scenario, as described in Section~\ref{sec:method}. We have developed an Android application to supervise production status and allow real-time monitoring for line managers/leaders.
  
-In addition, we have developed a framework for mission planning, command and control for intralogistics mission using a commercial UAV. We used an UAV to solve intralogistics problems using the dronekit API to control and command adopting a high-level programming language.
+In addition, we have developed a framework for mission planning, command and control for intralogistics mission using a commercial UAV. We used an UAV to solve intralogistics problems using the DroneKit API to control and command adopting a high-level programming language.
 
 Future work includes the use of computational vision for the recognition of inputs, and improvements of the optimization problem modeling for better results in cost evaluation. Supplementary, we will make experiments in a cooperative work environment where the number of UAVs is greater than two. In order to improve our results, we will develop more planner strategies such as an algorithm that produces different types of products simultaneously. Moreover, we will evaluate the communication between the drone and the application using different frameworks/protocols, in order to improve the supervision step.
 
