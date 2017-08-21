@@ -220,7 +220,7 @@ In order to control the UAV from a Android application, we have used the DroneKi
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\columnwidth]{sysArch.eps}
+	\includegraphics[width=\columnwidth]{sysArchAndPort.eps}
 	\caption{System's Architecture.\label{fig:sysArch}}
 \end{figure}
 
@@ -295,9 +295,9 @@ In the Mission Planner strategy, the UAV starts to bring all the necessary input
 
 In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
-Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted on the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the Warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
+Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted on the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the Warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides approximately equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
 
-In the simulated experiment we used the same coordinates as in the real experiment in order to perform the production mission. However, in the simulated experiment the 3DRobotics simulator was used to simulate the UAV and its placement in the GPS coordinates space.
+In the simulated experiment we used the same coordinates as in the real experiment in order to perform the production mission (cf. Definition~\ref{def:prodMission}). However, in the simulated experiment the 3DRobotics simulator was used to simulate the UAV and its placement in the GPS coordinates space.
 
 \begin{table}[H]
 \centering
@@ -334,6 +334,7 @@ Client & -3.098071 & -59.975839 \\
 \label{table:positions}
 \end{table}
 
+As we can see in Table~\ref{table:tests}, the production time in a real environment is a bit longer than in a simulation environment, due to external factors, such as wind and battery life.
 
 \section{Conclusion}
 \label{sec:conclusao}
