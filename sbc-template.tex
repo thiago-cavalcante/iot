@@ -258,7 +258,7 @@ The task to be performed is the production of the client order (cf. Definition~\
 \subsection{UAV Controller App}
 \label{subsec:app}
 
-We developed an Android application to connect to the UAV in order to create a client order and make the UAV executes it autonomously. Then, a user can visualize and supervise the operation.
+We developed an Android application to connect to the UAV in order to create a client order and make the UAV executes it autonomously. Then, an user can visualize and supervise the operation.
 
 \begin{figure}[]
 \centering
@@ -281,10 +281,10 @@ Internally in the app, it is implemented the mission planner (cf. Definition~\re
 We are able to communicate to drones using two different methods:
 \begin{itemize}
 \item USB - by using a radio signal module, we are able to obtain data from a real UAV. Such module comes with Iris+, and it is able to connect to an Android device that supports the USB On-The-Go (OTG) specification;
-\item UDP - when simulating an UAV using MAVLink, we are able to fetch data from such simulation. We are able to redirect data from MAVLink to a specified IP in the network, \textit{i.e.}, the Android device's IP.
+\item UDP - when simulating an UAV using SITL simulator~\cite{team2016sitl}, we are able to fetch data from such simulation. We are able to redirect data from SITL using MAVLink protocol~\cite{mavilink} to a specified IP in the network, \textit{i.e.}, the Android device's IP; additionally, they also need to be in the same port.
 \end{itemize}
 
-It is important to point out that such connection methods are needed in order to start the communication between an UAV and the app, but since we use the DroneKit API, the implementation of acquiring and displaying drone data is identical.
+It is important to point out that such connection methods are needed in order to start the communication between an UAV and the app, but since we use the DroneKit API~\cite{dronekit}, the implementation of acquiring and displaying drone data is identical.
 
 \subsubsection{App Mission Planner}
 \label{subsubsec:mp}
@@ -321,13 +321,13 @@ In the simulated experiment we used the same coordinates as in the real experime
 \hline
 \bfseries Name & \bfseries Latitude & \bfseries Longitude \\
 \hline
-Warehouse & cell5 & cell6 \\
+Warehouse & -3.098071 & -59.975988 \\
 \hline
-Production Line X & cell8 & cell9 \\
+Production Line X & -3.098030 & -59.975911 \\
 \hline
-Production Line Y & cell8 & cell9 \\
+Production Line Y & -3.098101 & -59.975911 \\
 \hline
-Client & cell8 & cell9 \\
+Client & -3.098071 & -59.975839 \\
 \hline
 \end{tabular}
 \caption{Experiment locations.}
