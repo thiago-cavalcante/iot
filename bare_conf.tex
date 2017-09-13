@@ -365,19 +365,19 @@
 
 
 \author{\IEEEauthorblockN{Thiago R. F. Cavalcante}
-\IEEEauthorblockA{Master Degree in\\Electrical Engineering\\
+\IEEEauthorblockA{Electronic and Information\\Research Center\\
 Federal University of Amazonas\\
 Amazonas, Manaus\\
 Email: thiagorodrigoengcomp@gmail.com}
 \and
 \IEEEauthorblockN{Erickson H. da S. Alves}
-\IEEEauthorblockA{Master Degree in\\Electrical Engineering\\
+\IEEEauthorblockA{Electronic and Information\\Research Center\\
 Federal University of Amazonas\\
 Amazonas, Manaus\\
 Email: erickson.higor@gmail.com}
 \and
 \IEEEauthorblockN{Celso B. Carvalho}
-\IEEEauthorblockA{Department of Electronics\\and Computer\\
+\IEEEauthorblockA{Electronic and Information\\Research Center\\
 Federal University of Amazonas\\
 Amazonas, Manaus\\
 Email: celsocarvalho75@gmail.com}}
@@ -449,7 +449,7 @@ One possible improvement of these logistics systems is the increase of the UAVs 
 
 Autonomous UAVs need to know what will happen in a future instant and what is the best decision to make at the present time; therefore, they require strategies not only to decompose their missions into meaningful sub-tasks, but also to track progress toward mission goals and the evolution of these tasks relative to the autonomous UAVs capabilities~\cite{finn2012developments}. As a consequence, in order to successfully perform a mission, it is recommended to perform task planning~\cite{finn2012developments}. Mission planning problems consist of planning events to meet certain requirements and objectives~\cite{krozel1988search}. Therefore, planning events is one of the main challenges faced in solving this problem.
 
-Both academy and industry have done researches about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
+Both academy and industry have been researching about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
 
 In this work we present an Android application to supervise production lines in real-time, enabling leaders/managers to check statuses and act on failures. It uses the Drone Kit API, which enables sending commands and receiving updates to/from the drone.
 
@@ -482,7 +482,7 @@ Mission Command is a command created to execute a task such as to go from one lo
 
 \begin{myDefinition}
 \textbf{(Mission)} 
-Mission is the set of steps and mission commands that the UAV executes to produce the customer's order.
+Mission is the set of steps and mission commands that accomplish the clients order.
 \label{def:mission}
 \end{myDefinition}
 
@@ -583,7 +583,7 @@ Vehicle configuration and sensor calibration are easily facilitated by ground co
 %In this section, we first investigate the UAV platform used (3DR IRIS+) in this study, describing the hardware characteristics and the control framework developed for intralogistics missions. 
 The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using a Python library \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol~\cite{meier2011pixhawk}. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
 
-The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we can see the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
+The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we show the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
 %
 \begin{figure}[H]
 	\centering
@@ -688,20 +688,20 @@ Internally in the app, it's implemented the mission planner and the controller m
 \section{Experimental Evaluation}
 \label{sec:results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
+In this section we present the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
-The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we can see, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
+The Table~\ref{table:tests} shows the experiments tested in a real UAV and a virtual UAV, in order to compare the results in both environments. As we present, when the virtual UAV is used, the mission gets a smaller flight time than in the real UAV. That is because the radio communication used in the real drone is affected by noises in the environment.
 \begin{table}[H]
 \centering
 \begin{tabular}{@{}ccc@{}}
 \cmidrule(l){2-3}
                                         & \cellcolor[HTML]{FF7774}\textbf{Real UAV} & \cellcolor[HTML]{5FCE89}\textbf{Virtual UAV} \\ \cmidrule(l){2-3} 
 \cellcolor[HTML]{C0C0C0}\textbf{Tests} & \textit{\textbf{Flight Time (s)}}            & \textit{\textbf{Flight Time (s)}}            \\
-\cellcolor[HTML]{C0C0C0}1               & 441,72                                       & 430,830                                       \\
-\cellcolor[HTML]{C0C0C0}2               & 440,18                                       & 436,885                                       \\
-\cellcolor[HTML]{C0C0C0}3               & 447,51                                       & 441,681                                       \\
-\cellcolor[HTML]{C0C0C0}4               & 438,19                                       & 441,277                                       \\
-\cellcolor[HTML]{C0C0C0}5               & 445,85                                       & 451,865                                       \\ \bottomrule
+\cellcolor[HTML]{C0C0C0}1               & 441.72                                       & 430.830                                       \\
+\cellcolor[HTML]{C0C0C0}2               & 440.18                                       & 436.885                                       \\
+\cellcolor[HTML]{C0C0C0}3               & 447.51                                       & 441.681                                       \\
+\cellcolor[HTML]{C0C0C0}4               & 438.19                                       & 441.277                                       \\
+\cellcolor[HTML]{C0C0C0}5               & 445.85                                       & 451.865                                       \\ \bottomrule
 \end{tabular}
 \caption{Mission Flight Time Tested in Real and Virtual UAV.\label{table:tests}}
 \end{table}
