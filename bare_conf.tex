@@ -569,7 +569,7 @@ In this section we discuss the third-party open-source software that is integral
 
 MAVLink provides messages that allow for accessing and changing vehicle parameter values, checking vehicle status and navigation, changing, for example, vehicle position, attitude and velocity. The protocol is extensible, allowing users to define new messages for their purposes. However, the provided message set is sufficiently robust that we have not had the need to do this.
 
-In 2015, 3DR introduced DroneKit-Android, a Android API for developing MAV applications \cite{dronekit}. DroneKit frees researchers and developers from many of the low-level aspects of MAVLink, providing a high-level interface for connecting to, monitoring and controlling a vehicle.
+In 2015, 3DR introduced DroneKit-Android, an Android API that provides interfaces for Android applications to control 3DR-powered vehicles using the MAVLink protocol. \cite{dronekit}. DroneKit frees researchers and developers from many of the low-level aspects of MAVLink, providing a high-level interface for connecting to, monitoring and controlling a vehicle.
 
 Vehicle configuration and sensor calibration are easily facilitated by ground control station software (GCS). Mission Planner (Windows only) and APM Planner (multi-platform) are both freely available. We use Mission Planner due to its ease of installation.
 
@@ -581,7 +581,7 @@ Vehicle configuration and sensor calibration are easily facilitated by ground co
 % \subsection{UAV Movement System}
 
 %In this section, we first investigate the UAV platform used (3DR IRIS+) in this study, describing the hardware characteristics and the control framework developed for intralogistics missions. 
-The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using a Python library \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol~\cite{meier2011pixhawk}. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
+The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using a Python library \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
 
 The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we show the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
 %
