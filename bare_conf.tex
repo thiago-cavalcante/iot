@@ -419,7 +419,7 @@ Email: celsocarvalho75@gmail.com}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-This paper presents the development of an Android application for the industry in order to start the production and supervise the process in production lines. A unmanned aerial vehicle (UAV) is used, equipped with a robotic gripper, which consists in an industrial scenario with an input warehouse, production lines, and a product depot. In the application, there is a mission planner that produces the needed commands for carrying out a given mission (the production of a product), which includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the client (product depot). It is presented how the Android application is useful to assist in the supervisioning process for line managers/leaders.
+This paper presents the development of a methodology to carry out missions in a production line environment using an unmanned aerial vehicle (UAV). The used UAV is equipped with a robotic gripper, which consists in an industrial scenario with an input warehouse, production lines, and a product depot. The mission, \textit{i.e.}, the production of a product, executed by the drone is previously planned, optimizing the traveled distance. We have implemented our methodology in an Android application, which uses radio waves to communicate with the UAV, sending commands and receiving statuses. It is presented how the mobile application is useful to assist in the supervisioning process for line managers/leaders.
 \end{abstract}
 
 % no keywords
@@ -451,13 +451,13 @@ Autonomous UAVs need to know what will happen in a future instant and what is th
 
 Both academy and industry have been researching about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
 
-In this work we present an Android application to supervise production lines in real-time, enabling leaders/managers to check statuses and act on failures. It uses the Drone Kit API, which enables sending commands and receiving updates to/from the drone.
+In this work we present a methodology to carry out a mission, \textit{i.e.}, a client order, in a production environment. Such mission is previously planned, so that the distance traveled by the UAV is optimized. Moreover, these components are implemented in an Android application, which uses radio waves to communicate with the drone. The mobile app is useful for leaders and/or managers, since they are able to supervise production lines in real-time, checking statuses and acting on failures.
 
 In summary, the main contributions of this study are:
 \begin{itemize}
 \item an Android app to supervise production lines;
-\item methods to control the drone using a smartphone;
-\item a mission planner directly implemented in the app.
+\item methods to control and communicate with the drone using a smartphone;
+\item a mission planner to carry out client orders, prioritizing the distance traveled by the UAV.
 \end{itemize}
 	
 \textit{Outline}. Section~\ref{sec:background} provides the fundamentals of mission planning and optimization problems. Section~\ref{sec:uav} describes the UAV movement system used in this work. Section~\ref{sec:method} explains the proposed evaluation methodology in further details. Section~\ref{sec:results} describes the experimental procedures and results in order to explore and demonstrate the potential of methodology, and, finally, Section~\ref{sec:conclusao} concludes this study and describes future work.
