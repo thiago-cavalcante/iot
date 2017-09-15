@@ -199,24 +199,21 @@ In order to control the UAV from a Android application, we have used the DroneKi
 %\item \texttt{Land}: command to make a UAV to land.
 %\end{itemize}
 
-\begin{table}[H]
-\scriptsize
+
+\begin{table}[H]\caption{Description of movement functions}
 \centering
-\resizebox{.8\textwidth}{!}{
-\begin{tabular}{|l|l|}
+\begin{tabular}{|c|c|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Command}} & \multicolumn{1}{c|}{\textbf{Description}}           \\ \hline
-\texttt{TakeOff}                     & takes off the UAV                                   \\ \hline
-\texttt{GoTo}                        & moves the UAV to a certain location                 \\ \hline
-\texttt{TakePackage}                 & takes an input/product (gripper) \\ \hline
-\texttt{LeavePackage}                & leaves an input/product (gripper)   \\ \hline
-\texttt{Wait}                        & makes the UAV to hover (wait)                       \\ \hline
-\texttt{Land}                        & lands the UAV                                       \\ \hline
-\end{tabular}}
-\caption{Description of movement functions}
+\textbf{Command} & \textbf{Description} \\ \hline
+\texttt{TakeOff}               &        takes off the UAV                                \\ \hline
+\texttt{GoTo}      &                    moves the UAV to a certain location  \\ \hline
+\texttt{TakePackage}               &    takes an input/product (gripper)                  \\ \hline
+\texttt{LeavePackage}               &   leaves an input/product (gripper)                   \\ \hline
+\texttt{Wait}                &          makes the UAV to hover (wait)            \\ \hline
+\texttt{Land}                &          lands the UAV                                                  \\ \hline
+\end{tabular}
 \label{table:movfunc}
 \end{table}
-
 
 \begin{figure}[H]
 	\centering
@@ -301,18 +298,18 @@ In the simulated experiment we used the same coordinates as in the real experime
 
 \begin{table}[H]
 \centering
-\resizebox{.65\textwidth}{!}{
-\begin{tabular}{@{}ccc@{}}
-\cmidrule(l){2-3}
-                                        & \cellcolor[HTML]{FF7774}\textbf{Real UAV} & \cellcolor[HTML]{5FCE89}\textbf{Virtual UAV} \\ \cmidrule(l){2-3} 
-\cellcolor[HTML]{C0C0C0}\textbf{Tests} & \textit{\textbf{Flight Time (s)}}            & \textit{\textbf{Flight Time (s)}}            \\
-\cellcolor[HTML]{C0C0C0}1               & 441,72                                       & 430,830                                       \\
-\cellcolor[HTML]{C0C0C0}2               & 440,18                                       & 436,885                                       \\
-\cellcolor[HTML]{C0C0C0}3               & 447,51                                       & 441,681                                       \\
-\cellcolor[HTML]{C0C0C0}4               & 438,19                                       & 441,277                                       \\
-\cellcolor[HTML]{C0C0C0}5               & 445,85                                       & 451,865                                       \\ \bottomrule
-\end{tabular}}
-\caption{Mission Flight Time Tested in Real and Virtual UAV.\label{table:tests}}
+\caption{Mission Flight Time Tested in Real and Virtual UAV.}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+\textbf{}                                     & \textbf{Real UAV}                 & \textbf{Virtual UAV}              \\ \hline
+\multicolumn{1}{|c|}{\textit{\textbf{Tests}}} & \textit{\textbf{Flight Time (s)}} & \textit{\textbf{Flight Time (s)}} \\ \hline
+\multicolumn{1}{|c|}{1}                       & 441.720                           & 430.830                           \\ \hline
+\multicolumn{1}{|c|}{2}                       & 440.180                           & 436.885                           \\ \hline
+\multicolumn{1}{|c|}{3}                       & 447.510                           & 441.681                           \\ \hline
+\multicolumn{1}{|c|}{4}                       & 438.190                           & 441.227                           \\ \hline
+\multicolumn{1}{|c|}{5}                       & 445.850                           & 451.865                           \\ \hline
+\end{tabular}
+\label{table:tests}
 \end{table}
 
 \begin{table}[H]
