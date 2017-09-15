@@ -4,8 +4,8 @@
 
 \usepackage{graphicx,url}
 
-%\usepackage[brazil]{babel}   
-\usepackage[latin1]{inputenc}  
+%\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
 
 \usepackage{float}
 
@@ -16,7 +16,7 @@
 %\usepackage{caption}
 %\usepackage{subcaption}
 \newtheorem{myDefinition}{Definition}
-     
+
 \sloppy
 
 \title{Radio Communication to Control and Run an Autonomous Mission for UAVs via a Mobile Application}
@@ -35,12 +35,12 @@
   \email{\{thiagorodrigoengcomp, erickson.higor\}@gmail.com, ccarvalho\_@ufam.edu.br}
 }
 
-\begin{document} 
+\begin{document}
 
 \maketitle
 
 \begin{abstract}
-  This paper presents the development of an Android application that controls an unmanned aerial vehicle (UAV). The UAV is equipped with a robotic griper and is used to start and supervise the production process in an industrial scenario composed of an input warehouse, production lines, and a product depot. The application has a mission planner that produces commands for carrying out a mission for the manufacturing of products. The manufacturing includes the delivery of inputs brought from the warehouse to the production line until the final product is delivered to the product depot. It is presented how the Android application is useful to assist in the supervising process for line managers/leaders.
+This paper presents the development of a methodology to carry out missions in a production line environment using an unmanned aerial vehicle (UAV). The used UAV is equipped with a robotic gripper, which consists in an industrial scenario with an input warehouse, production lines, and a product depot. The mission, \textit{i.e.}, the production of a product, executed by the drone is previously planned, optimizing the traveled distance. We have implemented our methodology in an Android application, which uses radio waves to communicate with the UAV, sending commands and receiving statuses. It is presented how the mobile application is useful to assist in the supervisioning process for line managers/leaders.
 \end{abstract}
 
 
@@ -54,15 +54,15 @@ One possible improvement of these logistics systems is the increase of the UAVs 
 
 Autonomous UAVs need to know what will happen in a future instant and what is the best decision to make at the present time; therefore, they require strategies not only to decompose their missions into meaningful sub-tasks, but also to track progress toward mission goals and the evolution of these tasks relative to the autonomous UAVs capabilities~\cite{finn2012developments}. As a consequence, in order to successfully perform a mission, it is recommended to perform task planning~\cite{finn2012developments}. Mission planning problems consist of planning events to meet certain requirements and objectives~\cite{krozel1988search}. Therefore, planning events is one of the main challenges faced in solving this problem.
 
-Both academy and industry have done researches about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
+Both academy and industry have been researching about evaluation and optimization of mission planning in the last years. In \cite{schwarz2012towards} is used ant colony to optimize UAV missions. Another paper investigates energy consumption for a factory and evaluates the logistic planning processes using statistical metrics of evaluation~\cite{muller2012analyzing}.
 
-In this work we present an Android application to supervise production lines in real-time, enabling leaders/managers to check statuses and act on failures. It uses the DroneKit API, which enables sending commands and receiving updates to/from the drone.
+In this work we present a methodology to carry out a mission, \textit{i.e.}, a client order, in a production environment. Such mission is previously planned, so that the distance traveled by the UAV is optimized. Moreover, these components are implemented in an Android application, which uses radio waves to communicate with the drone. The mobile app is useful for leaders and/or managers, since they are able to supervise production lines in real-time, checking statuses and acting on failures.
 
 In summary, the main contributions of this study are:
 \begin{itemize}
 \item an Android app to supervise production lines;
-\item methods to control the drone using a smartphone;
-\item a mission planner directly implemented in the app.
+\item methods to control and communicate with the drone using a smartphone;
+\item a mission planner to carry out client orders, prioritizing the distance traveled by the UAV.
 \end{itemize}
 	
 \textit{Outline}. Section~\ref{sec:terms} presents the terminologies used; Sections~\ref{subsec:uaviris}, \ref{subsec:software}, and \ref{sec:uav} present hardware, software and UAV motion control system respectively; Section~\ref{sec:method} explains the proposed evaluation scenario and methodology; Section~\ref{sec:results} describes the experimental procedures, and, finally, Section~\ref{sec:conclusao} concludes the paper and describes future work.
@@ -79,15 +79,15 @@ In summary, the main contributions of this study are:
 
 Key definitions related to the case study and the developed application are defined in this section. All definitions below are adopted in the remainder of the paper.
 
-\begin{myDefinition} 
-\textbf{(Mission Command)}. 
+\begin{myDefinition}
+\textbf{(Mission Command)}.
 Mission Command is a command that executes a task such as going from one location to another, get a package using a robot gripper, and land a UAV.
 \label{def:missioncommand}
 \end{myDefinition}
 
 \begin{myDefinition}
 \textbf{(Mission)}.
-Mission is the set of steps and mission commands that the UAV executes to produce the client's order.
+Mission is the set of steps and mission commands that accomplish client's orders.
 \label{def:mission}
 \end{myDefinition}
 
@@ -97,7 +97,7 @@ Warehouse is the location where a set of stored raw material are available until
 \label{def:almoxarifado}
 \end{myDefinition}
 
-\begin{myDefinition} 
+\begin{myDefinition}
 \textbf{(Order)}.
 Order is the product requested by the client. In this study, the products are of type X and Y.
 \label{def:pedido}
@@ -173,10 +173,10 @@ Vehicle configuration and sensor calibration are easily facilitated by ground co
 
 % \subsection{UAV Movement System}
 
-%In this section, we first investigate the UAV platform used (3DR IRIS+) in this study, describing the hardware characteristics and the control framework developed for intralogistics missions. 
+%In this section, we first investigate the UAV platform used (3DR IRIS+) in this study, describing the hardware characteristics and the control framework developed for intralogistics missions.
 The core hardware of the UAV IRIS+ is the Pixhawk and we can control it using an API for Android \cite{dronekit}, which uses Micro Air Vehicle Link (MAVLink) protocol. MAVLink is a protocol for communicating with small unmanned vehicle, which is designed as a header-only message marshalling library.
 
-The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we can see the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
+The UAV IRIS+ is integrated into a robot gripper to take and leave packages during missions (cf. Definition~\ref{def:mission}). We have connected a servo motor to the Pixhawk by one of the pulse width modulation (PWM) outputs. Figure~\ref{fig:hardArch} shows the system hardware architecture and the interconnections between each component module. In the hardware architecture shown in the Figure~\ref{fig:hardArch}, we outline the UAV hardware component connections where there is the Pixhawk (flight controller) and its connections between other components such as the compass, GPS, PWM outputs, battery and etc. Moreover, it shows the connection with a robot gripper using a PWM outputs as a signal control for the servo motor in the robot gripper. Finally, it shows the communication between a personal computer (PC) and the UAV via radio control (RC) signal.
 %
 \begin{figure}[H]
 	\centering
@@ -240,8 +240,10 @@ In order to control the UAV from a Android application, we have used the DroneKi
 \label{sec:ec}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to model the mission planning problem as an optimization problem, the case study shown in Figure~\ref{fig:useCase} is used.
-%
+The task to be performed is the production of the client order (cf. Definition~\ref{def:pedido}), where a given UAV collects supplies from the warehouse, takes that to the production line, and once the production of a certain product is finished, the UAV delivers it to the client. We model the mission planning problem as an optimization problem, \textit{i.e.}, we want the traveled distance to be as small as possible.
+
+In order to exemplify our methodology we use the case study shown in Figure~\ref{fig:useCase}.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.85\columnwidth]{useCase.eps}
@@ -249,8 +251,6 @@ In order to model the mission planning problem as an optimization problem, the c
 \end{figure}
 	
 Figure~\ref{fig:useCase} shows that there are three types of inputs in the warehouse (\textit{i.e.}, A, B, and C) and two production lines that produce two different products (\textit{i.e.}, X and Y). Each production line produces only one type of product and has a characteristic production time (cf. Definition~\ref{def:tempoProducao}). Figure~\ref{fig:useCase} shows that to produce a product of type X, two inputs of type A and one input of type C are required, and to produce a product of type Y, two inputs of type B and one input of type C are required. The production time of a X product is $4 p.u.$ and the time of production of product Y is $6 p.u.$. A production unit ($1 p.u.$) is considered to be a \texttt{GoTo} command performed by the UAV.
-
-The task to be performed is the production of the client order (cf. Definition~\ref{def:pedido}), where a given UAV collects supplies from the warehouse, takes that to the production line, and once the production of a certain product is finished, the UAV delivers it to the client.
 
 \subsection{UAV Controller App}
 \label{subsec:app}
@@ -290,7 +290,7 @@ In the Mission Planner strategy, the UAV starts to bring all the necessary input
 \section{Experimental Evaluation}
 \label{sec:results}
 
-In this section we can see the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
+In this section we present the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
 Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted on the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the Warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides approximately equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
 
@@ -314,6 +314,7 @@ In the simulated experiment we used the same coordinates as in the real experime
 
 \begin{table}[H]
 \centering
+\caption{Experiment locations.}
 \begin{tabular}{|c|c|c|}
 \hline
 \bfseries Name & \bfseries Latitude & \bfseries Longitude \\
@@ -327,18 +328,17 @@ Production Line Y & -3.098101 & -59.975911 \\
 Client & -3.098071 & -59.975839 \\
 \hline
 \end{tabular}
-\caption{Experiment locations.}
 \label{table:positions}
 \end{table}
 
-As we can see in Table~\ref{table:tests}, the production time in a real environment is a bit longer than in a simulation environment, due to external factors, such as wind and battery life.
+As we show in Table~\ref{table:tests}, the production time in a real environment is a bit longer than in a simulation environment, due to external factors, such as wind and battery life.
 
 \section{Conclusion}
 \label{sec:conclusao}
 %---------------------------------
 
 We have presented an evaluation methodology for UAV mission planner in an industrial production scenario, as described in Section~\ref{sec:method}. We have developed an Android application to supervise production status and allow real-time monitoring for line managers/leaders.
- 
+
 In addition, we have developed a framework for mission planning, command and control for intralogistics mission using a commercial UAV. We used an UAV to solve intralogistics problems using the DroneKit API to control and command adopting a high-level programming language.
 
 Future work includes the use of computational vision for the recognition of inputs, and improvements of the optimization problem modeling for better results in cost evaluation. Supplementary, we will make experiments in a cooperative work environment where the number of UAVs is greater than two. In order to improve our results, we will develop more planner strategies such as an algorithm that produces different types of products simultaneously. Moreover, we will evaluate the communication between the drone and the application using different frameworks/protocols, in order to improve the supervision step.
