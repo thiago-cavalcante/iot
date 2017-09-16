@@ -292,9 +292,9 @@ In the Mission Planner strategy, the UAV starts to bring all the necessary input
 
 In this section we present the experimental results of the Android application to control a UAV as described in Section~\ref{sec:ec}.
 
-Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted on the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the Warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides approximately equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
+Table~\ref{table:tests} shows the experiments executed with a real UAV and a virtual (simulated) UAV in order to compare results in both environments.  The scenario of Figure~\ref{fig:useCase} was used for both real and simulated experiments. The real experiment was conducted at the soccer field of the faculty of physical education of the Federal University of Amazonas. In the real experiment the warehouse, production line $1$, production line $2$ and product depot were arranged at the vertices of a square with sides approximately equal to $10$m. These positions were entered into the Android mission planner application using GPS coordinates (Global Positioning System) and are shown in Table~\ref{table:positions}.
 
-In the simulated experiment we used the same coordinates as in the real experiment in order to perform the production mission (cf. Definition~\ref{def:prodMission}). However, in the simulated experiment the 3DRobotics simulator was used to simulate the UAV and its placement in the GPS coordinates space.
+In the simulated experiment we used the same coordinates as in the real experiment in order to perform the production mission (cf. Definition~\ref{def:prodMission}). However, in the simulated experiment the 3DRobotics simulator (SITL) was used to simulate the UAV and its placement in the GPS coordinates space~\cite{team2016sitl}.
 
 \begin{table}[H]
 \centering
@@ -331,17 +331,17 @@ Client & -3.098071 & -59.975839 \\
 \label{table:positions}
 \end{table}
 
-As we show in Table~\ref{table:tests}, the production time in a real environment is a bit longer than in a simulation environment, due to external factors, such as wind and battery life.
+As we show in Table~\ref{table:tests}, the production time in a real environment in average is a bit longer than in a simulation environment, due to external factors, such as wind and battery life. The experiments were very satisfied because responded as we expected in both environment.
 
 \section{Conclusion}
 \label{sec:conclusao}
 %---------------------------------
 
-We have presented an evaluation methodology for UAV mission planner in an industrial production scenario, as described in Section~\ref{sec:method}. We have developed an Android application to supervise production status and allow real-time monitoring for line managers/leaders.
+We have developed an Android application to supervise production status and allow real-time monitoring for line managers/leaders.
 
 In addition, we have developed a framework for mission planning, command and control for intralogistics mission using a commercial UAV. We used an UAV to solve intralogistics problems using the DroneKit API to control and command adopting a high-level programming language.
 
-Future work includes the use of computational vision for the recognition of inputs, and improvements of the optimization problem modeling for better results in cost evaluation. Supplementary, we will make experiments in a cooperative work environment where the number of UAVs is greater than two. In order to improve our results, we will develop more planner strategies such as an algorithm that produces different types of products simultaneously. Moreover, we will evaluate the communication between the drone and the application using different frameworks/protocols, in order to improve the supervision step.
+Future work includes the use of computational vision for the recognition of inputs, and improvements of the UAV system used. Supplementary, we will make experiments in a cooperative work environment where the number of UAVs is greater than two. In order to improve our results, we will develop more planner strategies such as an algorithm that produces different types of products simultaneously. Moreover, we will evaluate the communication between the drone and the application using different frameworks/protocols, in order to improve the supervision step.
 
 \bibliographystyle{sbc}
 \bibliography{sbc-template}
