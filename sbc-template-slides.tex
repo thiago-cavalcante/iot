@@ -81,7 +81,7 @@
 
 % --- Informações do documento ---
 \title{Radio Communication to Control and Run an Autonomous Mission for UAVs via a Mobile Application}
-\author{Thiago Rodrigo Félix Cavalcante}
+\author{Thiago Rodrigo Félix Cavalcante\\Erickson Higor da Silva Alves\\Celso Barbosa de Carvalho}
 %\institute{Programa de Pós-Graduação em Engenharia Elétrica
 %	    \par
 %	    Faculdade de Tecnologia}
@@ -177,290 +177,88 @@
 
 
 % ----------------- NOVO SLIDE --------------------------------
-\section{Program Synthesis}
+\section{Introduction}
 
 \begin{frame}{Introduction}
 
 Logistics has become a competitive and fundamental factor for organizations, involving the management, conservation, and supervision of freight transport. In addition, excellent logistics means client satisfaction; so speed is still an important factor in a successful logistics process~\cite{drone4logistic}.
 
-
 \end{frame}
-\begin{frame}{Program Synthesis}
+\begin{frame}{Introduction}
 
-Program Synthesis is the task of discovering an executable program from user intent expressed in the form of some constraints
-
-
-\end{frame}
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause 	
-\framesubtitle{Domain specific synthesis}
-Domain specific systems take the human insight and build it directly into the synthesizer.\pause
-
-\begin{itemize}
-\item AutoBayes - data analysis programs from statistical models;\pause
-\item FFTW - produces fast Fourier transforms optimized for 
-specic architectures;\pause
-\item Generate implementations that often outperform hand-written code;\pause
-\item Very specific to a field and rely on domain specific knowledge.
-\end{itemize}
+In this work we present a methodology to carry out a mission, \textit{i.e.}, a client order, in a production environment. Such mission is previously planned, so that the distance travelled by the UAV is optimized. Moreover, these components are implemented in an Android application, which uses radio waves to communicate with the drone. The mobile app is useful for leaders and/or managers, since they are able to supervise production lines in real-time, checking statuses and acting on failures.
 
 \end{frame}
 
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause 	
-\framesubtitle{Deductive approach}
-
-\begin{itemize}
-\item Synthesis systems which allow the user to provide insight directly into the synthesizer;\pause
-\item Program can be extracted from a constructive proof of the satisfiability of a specification – KIDS \cite{smith1990kids}, NuPRL \cite{constable1986implementing};\pause
-\item In the hands of experts, these systems are extremely powerful (correct implementation);\pause
-\item Demands a high level of expertise.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause 	
-\framesubtitle{Sketching}
-A form of synthesis that uses partial programs as a communication device between the programmer and the synthesizer.\pause
-
-\begin{itemize}
-\item focus the synthesizer on low-level details, leaving control of the high-level strategy in the hands of the programmer.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause
-Find a program $P$ that meets a specification $\phi(input, output)$:\pause
-
-\begin{equation}
-\exists P \forall x . \phi(x, P(x))
-\end{equation}
-
-\end{frame}
-
-\newlength\someheight
-\setlength\someheight{3cm}
-
-\begin{frame}[fragile]
-    \frametitle{Program Synthesis}\pause
-	\framesubtitle{List example}
-    \begin{adjustbox}{width=\textwidth,height=\someheight,keepaspectratio}
-    \begin{lstlisting}
-        list reverse (list l){
-            if (isEmpty(l)){
-                return l;
-            }
-            else{
-                node n = popHead(l);
-                return append(reverse(l), n);
-            }
-        }
-    \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Program Synthesis}\pause
-	\framesubtitle{List example}
-    \begin{adjustbox}{width=\textwidth,height=\someheight,keepaspectratio}
-    \begin{lstlisting}
-        list reverseEfficient(list l){
-            list nl = new list();
-            while(.){.}
-        }
-    \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}
-\framesubtitle{List example}
-
-The condition for the loop must be a pointer comparison involving some of the memory locations reachable from l and nl.
-
-These conditions are stated as expressions called generators.
-
-$\#define ~LOC ~\{ ~|(l ~| ~nl).(head ~| ~tail)(.next)? ~| ~null ~|\}$
-
-$\#define ~COMP ~\{| ~LOC ~( ~== ~| ~!= ~) ~LOC ~|\}$
-
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Program Synthesis}\pause
-	\framesubtitle{List example}
-    \begin{adjustbox}{width=\textwidth,height=\someheight,keepaspectratio}
-    \begin{lstlisting}
-        list reverseEfficient(list l){
-            #define LOC {|(l | nl).(head | tail)(.next)? | null |} 
-            #define COMP {| LOC ( == | != ) LOC |}
-            
-            list nl = new list();
-            while(COMP){.}
-        }
-    \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause 	
-\framesubtitle{Deductive approach}
-
-\begin{itemize}
-\item A sequence of assignments to some of the available pointers;\pause
-\item Guard assignments with some condition;\pause
-\item Temporary variable is required;\pause
-\item Use a different iteration condition for the first iteration.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Program Synthesis}\pause
-	\framesubtitle{List example}
-    \begin{adjustbox}{width=\textwidth,height=\someheight,keepaspectratio}
-    \begin{lstlisting}
-    	#define LOC {|(l | nl).(head | tail)(.next)? | null |} 
-        #define COMP {| LOC ( == | != ) LOC |}
-        list reverseEfficient(list l){
-            list nl = new list();
-            node tmp = null;
-            bit c = COMP;
-            while(c){
-            	if( COMP ){ LHS = LOC2; }
-            	if( COMP ){ LHS = LOC2; }
-            	if( COMP ){ LHS = LOC2; }
-            	if( COMP ){ LHS = LOC2; }
-            	if( COMP ){ LHS = LOC2; }
-            	c = COMP;
-            }
-         }
-    \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause
-Find a program $P$ that meets a specification $\phi(input, output)$:\pause
-
-\begin{equation}
-\exists P \forall x . \phi(x, P(x))
-\end{equation}
-
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Program Synthesis}\pause
-	\framesubtitle{List example}
-    \begin{adjustbox}{width=\textwidth,height=\someheight,keepaspectratio}
-    \begin{lstlisting}
-    	main(bit [N] elems, int n){
-            if( n < N){
-            	list l1 = populate(elems, n);
-            	list l2 = populate(elems, n);
-            	l1 = reverse(l1);
-            	l2 = reverseEfficient(l2);
-            	assert compare(l1, l2);
-            }
-       }
-    \end{lstlisting}
-    \end{adjustbox}
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}\pause
-\framesubtitle{Counterexample Guided Inductive Synthesis (CEGIS)}
-
-In sketching, user insight is provided in the form of a partial program that needs to be completed.\pause
-
-Synthesis problem is reduced to a search for constant values to assign to each hole in the sketch.
-
-\end{frame}
-
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}
-\framesubtitle{Counterexample Guided Inductive Synthesis (CEGIS)}
+\section{Methodology}
+\begin{frame}{Methodology}
+\frametitle{Methodology}
+\framesubtitle{Functioning Diagram}\pause
 
  \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.2]{diagram1.png}
-  \caption{Counterexample driven synthesis algorithm. Source: \url{https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-177.html}}
+  \includegraphics[scale=0.4]{sysArchAndPort.eps}
+  %\caption{Diagram}
 \end{figure}
 
 \end{frame}
 
-\begin{frame}{Program Synthesis}
-\frametitle{Program Synthesis}
-\framesubtitle{Counterexample Guided Inductive Synthesis (CEGIS)}
+\begin{frame}{Methodology}
+\frametitle{Methodology}
+\framesubtitle{Use Case Environment}\pause
+
+ \begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.55]{useCase.eps}
+  %\caption{Diagram}
+ \end{figure}
+
+\end{frame}
+
+\section{Results}
+\begin{frame}{Results}
+\frametitle{Results} 	
+%\framesubtitle{Sketching}
+\pause
+
+\begin{table}[H]
+\centering
+\caption{Mission Flight Time Tested in Real and Virtual UAV.}
+\begin{tabular}{c|c|c|}
+\cline{2-3}
+\textbf{}                                     & \textbf{Real UAV}                 & \textbf{Virtual UAV}              \\ \hline
+\multicolumn{1}{|c|}{\textit{\textbf{Tests}}} & \textit{\textbf{Flight Time (s)}} & \textit{\textbf{Flight Time (s)}} \\ \hline
+\multicolumn{1}{|c|}{1}                       & 441.720                           & 430.830                           \\ \hline
+\multicolumn{1}{|c|}{2}                       & 440.180                           & 436.885                           \\ \hline
+\multicolumn{1}{|c|}{3}                       & 447.510                           & 441.681                           \\ \hline
+\multicolumn{1}{|c|}{4}                       & 438.190                           & 441.227                           \\ \hline
+\multicolumn{1}{|c|}{5}                       & 445.850                           & 451.865                           \\ \hline
+\end{tabular}
+\label{table:tests}
+\end{table}
+
+\end{frame}
+
+\section{Conclusions}
+\begin{frame}{Conclusions}
+\frametitle{Conclusions}\pause
 
 \begin{itemize}
-\item The inductive synthesizer uses each new 
-observation to refine its hypothesis about 
-what the correct program should be until it 
-converges to a solution;\pause
-\item Validation procedure checks the candidate 
-implementation produced by the inductive 
-synthesizer;\pause
-\item Validation procedure is expected to produce 
-a concrete input which exhibits the bug in 
-the candidate program.
+\item we have developed an Android application to supervise production status and allow real-time monitoring for line managers/leaders;\pause
+
+\item we have developed a framework for mission planning, command and control for intralogistics mission using a commercial UAV. We used an UAV to solve intralogistics problems using the DroneKit API to control and command adopting a high-level programming language.
 \end{itemize}
 
 \end{frame}
 
-\section{Paper Progress}
-\begin{frame}{Paper Progress}
-\frametitle{Paper Progress}
-\framesubtitle{Digital Control Systems - Math Proof}
+\section{Critique}
+\begin{frame}{Critique}
+\frametitle{Critique}\pause
 
 \begin{itemize}
-\item Modelling of an expression to verify that a settling time given by the synthesizer satisfies the settling time required;\pause\item Implementing the checker in C;\pause
-\item Needs to be fined and validated.
+\item the use of computational vision for the recognition of inputs, and improvements of the UAV system used;\pause
+\item evaluate the communication between the drone and the application using different frameworks/protocols, in order to improve the supervision step.
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Paper Progress}
-\frametitle{Paper Progress}
-\framesubtitle{Digital Control Systems - Math Proof}
-
-\emph{Modelling}:
-
-The output of a Discrete System can be given by:
-\begin{equation}
-y[k]=CA^kx[0]+\sum_{m=0}^{k-1}(CA^{k-m-1}Bu[m])+Du[k]
-\end{equation}
-or by:
-\begin{equation}
-y[k]=y_{ss}+\sum_{i=1}^{n}C_i\lambda_i^k
-\end{equation}
-
-Modelled expression to prove the satisfiability:
-\begin{equation}\label{eq:saidaNova}
-\overline{y}[k]=y_{ss}+n\overline{C}\overline{\lambda}^k
-\end{equation}
-
-
-\end{frame}
-
-\definecolor{keywords}{RGB}{255,0,90}
-\definecolor{comments}{RGB}{60,179,113}
-\lstset{language=C,
-keywordstyle=\color{keywords},
-commentstyle=\color{comments}\emph}
-\begin{frame}[fragile]
-\frametitle{Paper Progress}
-\framesubtitle{Implementation of the checker in C}\pause
-
-\emph{Procedures}:
-\begin{lstlisting}
-complex double *getEigvalues(MAT *A);
-double maxMagEigVal(complex double *z, size_t size);
-double log_b(double base, double x);
-double k_ss(MAT *A, MAT *B, MAT *C, MAT *D, double p, double u);
-\end{lstlisting}
 
 \end{frame}
 
